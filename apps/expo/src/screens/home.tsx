@@ -6,6 +6,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { FlashList } from "@shopify/flash-list";
 import type { inferProcedureOutput } from "@trpc/server";
 import type { AppRouter } from "@acme/api";
+import { connnect, battery, mac, blink } from '@acme/metawear-expo';
+
 
 import { trpc } from "../utils/trpc";
 
@@ -95,6 +97,21 @@ export const HomeScreen = () => {
             </Text>
           )}
         </View>
+
+        <Button
+          title='connect'
+          onPress={async () => {
+            const x = await connnect()
+            console.log(x)
+          }}
+        ></Button>
+        <Button
+          title='battery'
+          onPress={async () => {
+            const x = await battery()
+            console.log(x)
+          }}
+        ></Button>
 
         <FlashList
           data={postQuery.data}
