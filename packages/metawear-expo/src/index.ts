@@ -10,9 +10,12 @@ import MetawearExpoModule from "./MetawearExpoModule";
 import { ChangeEventPayload } from "./MetawearExpo.types";
 
 export async function connnect(): Promise<string> {
+  console.log("yeet2");
   return await MetawearExpoModule.connect();
 }
 export async function battery(): Promise<string> {
+  console.log("yeet");
+
   return await MetawearExpoModule.battery();
 }
 
@@ -26,11 +29,11 @@ export async function blink(): Promise<void> {
 }
 
 const emitter = new EventEmitter(
-  MetawearExpoModule ?? NativeModulesProxy.MetawearExpo
+  MetawearExpoModule ?? NativeModulesProxy.MetawearExpo,
 );
 
 export function addChangeListener(
-  listener: (event: ChangeEventPayload) => void
+  listener: (event: ChangeEventPayload) => void,
 ): Subscription {
   return emitter.addListener<ChangeEventPayload>("onChange", listener);
 }
