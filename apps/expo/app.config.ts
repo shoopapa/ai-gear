@@ -1,6 +1,7 @@
 import { ExpoConfig, ConfigContext } from "@expo/config";
 
-const CLERK_PUBLISHABLE_KEY = "your-clerk-publishable-key";
+const CLERK_PUBLISHABLE_KEY =
+  "pk_test_bGl2aW5nLW11bGUtMjEuY2xlcmsuYWNjb3VudHMuZGV2JA";
 
 const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
   name: "expo",
@@ -20,9 +21,10 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
   assetBundlePatterns: ["**/*"],
   ios: {
     supportsTablet: true,
-    bundleIdentifier: "your.bundle.identifier",
+    bundleIdentifier: "com.jdavis.aigear",
   },
   android: {
+    package: "com.jdavis.aigear",
     adaptiveIcon: {
       foregroundImage: "./assets/icon.png",
       backgroundColor: "#2e026d",
@@ -34,7 +36,17 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
     },
     CLERK_PUBLISHABLE_KEY,
   },
-  plugins: ["./expo-plugins/with-modify-gradle.js"],
+  plugins: [
+    ["./expo-plugins/with-modify-gradle.js"],
+    [
+      "expo-build-properties",
+      {
+        ios: {
+          deploymentTarget: "14.0",
+        },
+      },
+    ],
+  ],
 });
 
 export default defineConfig;
