@@ -22,6 +22,9 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
   ios: {
     supportsTablet: true,
     bundleIdentifier: "com.jdavis.aigear",
+    infoPlist: {
+      NSBluetoothAlwaysUsageDescription: "Can I use bluetooth",
+    },
   },
   android: {
     package: "com.jdavis.aigear",
