@@ -13,8 +13,8 @@ const SignInWithOAuth = () => {
     try {
       const redirectUrl = AuthSession.makeRedirectUri({
         path: "/oauth-native-callback",
+        // useProxy: true,
       });
-      console.log(redirectUrl)
       // Choose your OAuth provider, based upon your instance.
       await signIn.create({
         strategy: "oauth_discord",
