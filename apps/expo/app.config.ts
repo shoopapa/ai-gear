@@ -4,8 +4,8 @@ const CLERK_PUBLISHABLE_KEY =
   "pk_test_bGl2aW5nLW11bGUtMjEuY2xlcmsuYWNjb3VudHMuZGV2JA";
 
 const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
-  name: "expo",
-  slug: "expo",
+  name: "aigear",
+  slug: "aigear",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/icon.png",

@@ -1,6 +1,7 @@
 import { useSignUp, useSignIn } from "@clerk/clerk-expo";
 import React from "react";
-import { Button, View } from "react-native";
+import { View, Text } from "react-native";
+import { Button } from 'react-native-paper'
 
 import * as AuthSession from "expo-auth-session";
 
@@ -75,11 +76,15 @@ const SignInWithOAuth = () => {
   };
 
   return (
-    <View className="rounded-lg border-2 border-gray-500 p-4">
+    <View className="flex-col h-full flex-auto justify-between py-20">
+      <Text className="text-center text-4xl">
+        AI Gear
+      </Text>
       <Button
-        title="Sign in with Discord"
+        className="m-10 bg-red"
+        mode='contained'
         onPress={handleSignInWithDiscordPress}
-      />
+      >Sign in with Discord</Button>
     </View>
   );
 };
