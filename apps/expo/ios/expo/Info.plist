@@ -25,6 +25,7 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
+          <string>aigear</string>
           <string>com.jdavis.aigear</string>
         </array>
       </dict>
