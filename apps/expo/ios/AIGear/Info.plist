@@ -25,7 +25,6 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>expo</string>
           <string>com.jdavis.aigear</string>
           <string>com.jdavis.aigear</string>
         </array>

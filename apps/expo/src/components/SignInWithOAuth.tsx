@@ -1,7 +1,6 @@
 import { useSignUp, useSignIn } from "@clerk/clerk-expo";
 import React from "react";
-import { View, Text } from "react-native";
-import { Button } from 'react-native-paper'
+import { View, Text, Button } from "react-native";
 
 import * as AuthSession from "expo-auth-session";
 
@@ -82,10 +81,11 @@ const SignInWithOAuth = () => {
         AI Gear
       </Text>
       <Button
+        title="Sign in with Discord"
         className="m-10 bg-red"
         mode='contained'
         onPress={handleSignInWithDiscordPress}
-      >Sign in with Discord</Button>
+      ></Button>
     </View>
   );
 };
