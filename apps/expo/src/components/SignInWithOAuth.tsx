@@ -14,7 +14,8 @@ const SignInWithOAuth = () => {
       const redirectUrl = AuthSession.makeRedirectUri({
         path: "/oauth-native-callback",
       });
-
+      console.log(redirectUrl)
+      // Choose your OAuth provider, based upon your instance.
       await signIn.create({
         strategy: "oauth_discord",
         redirectUrl,
@@ -58,7 +59,7 @@ const SignInWithOAuth = () => {
         }
 
         console.log(
-          "Didn't have an account transferring, following through with new account sign up",
+          "Didn't have an account transferring, following through with new account sign up"
         );
 
         // Create user
@@ -75,7 +76,7 @@ const SignInWithOAuth = () => {
   };
 
   return (
-    <View className="rounded-lg border-2 border-gray-500 p-4">
+    <View>
       <Button
         title="Sign in with Discord"
         onPress={handleSignInWithDiscordPress}
