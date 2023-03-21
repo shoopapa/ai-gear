@@ -4,7 +4,7 @@ const CLERK_PUBLISHABLE_KEY =
   "pk_test_ZXhwZXJ0LWFsaWVuLTkxLmNsZXJrLmFjY291bnRzLmRldiQ";
 
 const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
-  scheme: "aigear",
+  scheme: "com.jdavis.aigear",
   name: "expo",
   slug: "expo",
   version: "1.0.0",
@@ -27,8 +27,9 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
       NSBluetoothAlwaysUsageDescription: "Can I use bluetooth",
     },
   },
-  currentFullName:'aigear',
-  originalFullName:'aigear',
+
+  currentFullName: "@joedavis29@expo",
+  originalFullName: "@joedavis29@expo",
   android: {
     package: "com.jdavis.aigear",
     adaptiveIcon: {

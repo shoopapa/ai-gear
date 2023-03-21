@@ -12,10 +12,13 @@ const SignInWithOAuth = () => {
   const handleSignInWithDiscordPress = async () => {
     try {
       const redirectUrl = AuthSession.makeRedirectUri({
-        path: "/oauth-native-callback",
+        path: "oauth-native-callback",
+        projectNameForProxy: 'expo-pitetion',
       });
 
+      console.log(redirectUrl)
       await signIn.create({
+
         strategy: "oauth_discord",
         redirectUrl,
       });
@@ -32,6 +35,7 @@ const SignInWithOAuth = () => {
         returnUrl: redirectUrl,
       });
 
+      console.log(authResult)
       if (authResult.type !== "success") {
         throw "Something went wrong during the OAuth flow. Try again.";
       }
