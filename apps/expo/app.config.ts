@@ -1,12 +1,12 @@
 import { ExpoConfig, ConfigContext } from "@expo/config";
 
 const CLERK_PUBLISHABLE_KEY =
-  "CLERK_PUBLISHABLE_KEYpk_test_ZXhwZXJ0LWFsaWVuLTkxLmNsZXJrLmFjY291bnRzLmRldiQ";
+  "pk_test_ZXhwZXJ0LWFsaWVuLTkxLmNsZXJrLmFjY291bnRzLmRldiQ";
 
 const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
-  scheme: "expo",
-  name: "expo",
-  slug: "expo",
+  scheme: "com.jdavis.aigear",
+  name: "AI Gear",
+  slug: "aigear",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/icon.png",
@@ -27,6 +27,9 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
       NSBluetoothAlwaysUsageDescription: "Can I use bluetooth",
     },
   },
+
+  currentFullName: "@joedavis29@aigear",
+  originalFullName: "@joedavis29@aigear",
   android: {
     package: "com.jdavis.aigear",
     adaptiveIcon: {

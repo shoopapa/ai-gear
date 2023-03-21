@@ -28,7 +28,7 @@
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="com.jdavis.aigear"/>
         <data android:scheme="aigear"/>
-        <data android:scheme="expo"/>
+        <data android:scheme="com.jdavis.aigear"/>
       </intent-filter>
     </activity>
     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" android:exported="false"/>

@@ -5,7 +5,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>expo</string>
+    <string>AI Gear</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -26,6 +26,7 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>expo</string>
+          <string>com.jdavis.aigear</string>
           <string>com.jdavis.aigear</string>
         </array>
       </dict>
