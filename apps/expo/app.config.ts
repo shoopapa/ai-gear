@@ -1,7 +1,7 @@
 import { ExpoConfig, ConfigContext } from "@expo/config";
 
 const CLERK_PUBLISHABLE_KEY =
-  "pk_test_bGl2aW5nLW11bGUtMjEuY2xlcmsuYWNjb3VudHMuZGV2JA";
+  "pk_test_ZXhwZXJ0LWFsaWVuLTkxLmNsZXJrLmFjY291bnRzLmRldiQ";
 
 const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
   name: "expo",
