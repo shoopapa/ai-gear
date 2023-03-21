@@ -1,12 +1,12 @@
 import { ExpoConfig, ConfigContext } from "@expo/config";
 
 const CLERK_PUBLISHABLE_KEY =
-  "pk_test_bGl2aW5nLW11bGUtMjEuY2xlcmsuYWNjb3VudHMuZGV2JA";
+  "CLERK_PUBLISHABLE_KEYpk_test_ZXhwZXJ0LWFsaWVuLTkxLmNsZXJrLmFjY291bnRzLmRldiQ";
 
 const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
-  scheme: "aigear",
-  name: "aigear",
-  slug: "aigear",
+  scheme: "expo",
+  name: "expo",
+  slug: "expo",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/icon.png",
