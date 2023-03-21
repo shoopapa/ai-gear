@@ -52,7 +52,7 @@
   },
   "expo": {
     "autolinking": {
-      "nativeModulesDir": "../../packages/metawear-expo"
+      "nativeModulesDir": "/Users/joedavis/code/ai-gear/packages/metawear-expo"
     }
   },
   "private": true
