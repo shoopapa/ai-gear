@@ -5,8 +5,8 @@ const CLERK_PUBLISHABLE_KEY =
 
 const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
   scheme: "com.jdavis.aigear",
-  name: "expo",
-  slug: "expo",
+  name: "AI Gear",
+  slug: "aigear",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/icon.png",
@@ -28,8 +28,8 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
     },
   },
 
-  currentFullName: "@joedavis29@expo",
-  originalFullName: "@joedavis29@expo",
+  currentFullName: "@joedavis29@aigear",
+  originalFullName: "@joedavis29@aigear",
   android: {
     package: "com.jdavis.aigear",
     adaptiveIcon: {
