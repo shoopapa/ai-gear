@@ -27,6 +27,8 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
       NSBluetoothAlwaysUsageDescription: "Can I use bluetooth",
     },
   },
+  currentFullName:'aigear',
+  originalFullName:'aigear',
   android: {
     package: "com.jdavis.aigear",
     adaptiveIcon: {

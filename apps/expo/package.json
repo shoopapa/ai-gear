@@ -1,6 +1,7 @@
 {
   "name": "@acme/expo",
   "version": "0.1.0",
+  "packageManager": "pnpm@7.13.0",
   "main": "index.ts",
   "scripts": {
     "start": "expo start --dev-client",
