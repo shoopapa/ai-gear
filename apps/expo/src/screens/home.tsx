@@ -106,9 +106,9 @@ export const HomeScreen = () => {
           }}
         ></Button>
         <Button
-          title='battery'
+          title='blink'
           onPress={async () => {
-            const x = await battery()
+            const x = await blink()
             console.log(x)
           }}
         ></Button>
