@@ -75,6 +75,7 @@ public class MetawearExpoModule: Module {
         for device in devices {
           device.clearAndReset()
           device.forget()
+          self.device = nil
           self.setState(state: State(connected: false))
           promise.resolve()
         }

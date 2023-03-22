@@ -92,9 +92,9 @@ const Connect = () => {
         disabled={blinking}
         icon="bluetooth-off"
         onPress={async () => {
-          setblinking(true);
+          setisScanning(true)
           await forget()
-          setblinking(false);
+          setisScanning(false);
         }}
       >
         Forget

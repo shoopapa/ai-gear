@@ -13,7 +13,7 @@ export const connnect = async (): Promise<string> => {
   return await MetawearExpoModule.connect();
 };
 export const forget = async (): Promise<string> => {
-  return await MetawearExpoModule.connect();
+  return await MetawearExpoModule.forget();
 };
 export const battery = async (): Promise<string> => {
   return await MetawearExpoModule.battery();
