@@ -9,33 +9,38 @@ import {
 import MetawearExpoModule from "./MetawearExpoModule";
 import { ChangeEventPayload } from "./MetawearExpo.types";
 
-export async function connnect(): Promise<string> {
-  console.log("yeet2");
+export const connnect = async (): Promise<string> => {
   return await MetawearExpoModule.connect();
-}
-export async function battery(): Promise<string> {
-  console.log("yeet");
-
+};
+export const forget = async (): Promise<string> => {
+  return await MetawearExpoModule.connect();
+};
+export const battery = async (): Promise<string> => {
   return await MetawearExpoModule.battery();
-}
+};
 
-export async function mac(): Promise<string> {
-  return await MetawearExpoModule.mac();
-}
+export const mac = (): Promise<string> => {
+  return MetawearExpoModule.mac();
+};
+export const getConnected = (): boolean => {
+  return MetawearExpoModule.isConnected();
+};
 
-export async function blink(): Promise<void> {
+export const blink = async (): Promise<void> => {
   await MetawearExpoModule.blink();
   return;
-}
+};
 
 const emitter = new EventEmitter(
   MetawearExpoModule ?? NativeModulesProxy.MetawearExpo,
 );
 
-export function addChangeListener(
-  listener: (event: ChangeEventPayload) => void,
-): Subscription {
-  return emitter.addListener<ChangeEventPayload>("onChange", listener);
-}
+export type StateEventPayload = {
+  connected: boolean;
+};
 
-export { ChangeEventPayload };
+export const addStateListener = (
+  listener: (event: StateEventPayload) => void,
+): Subscription => {
+  return emitter.addListener<StateEventPayload>("state-event", listener);
+};

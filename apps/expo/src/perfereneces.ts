@@ -9,6 +9,7 @@ import {
   adaptNavigationTheme,
   MD3DarkTheme,
   MD3LightTheme,
+  DefaultTheme,
 } from "react-native-paper";
 import merge from "deepmerge";
 //custom
@@ -38,7 +39,7 @@ export const CombinedDefaultTheme = {
   ...CombinedDefaultTheme1,
   colors: {
     ...CombinedDefaultTheme1.colors,
-    defaultBackgroundColor: "black",
+    defaultBackgroundColor: "white",
     primary: "#19489f",
     warningYellow: "#f69220",
     primaryByOpacity: () => {
@@ -46,8 +47,9 @@ export const CombinedDefaultTheme = {
     },
     disabledPrimary: "#19489fa6",
     accent: "#6595ed",
-    gray: "#282c34",
-    error: "#9c2121",
+    gray: "#f1f3f3",
+    error: DefaultTheme.colors.error,
+    darkgray: "rgb(150 150 150)",
     success: "#66bb6a",
   },
 };
@@ -64,6 +66,7 @@ export const CombinedDarkTheme: typeof CombinedDefaultTheme = {
     disabledPrimary: "#19489fa6",
     accent: "#6595ed",
     gray: "#282c34",
+    darkgray: "rgb(150 150 150)",
     error: "#9c2121",
     success: "#66bb6a",
   },
@@ -89,6 +92,7 @@ export const styles = (theme: typeof CombinedDefaultTheme) => {
       backgroundColor: theme.colors.defaultBackgroundColor,
       flex: 1,
       paddingTop: 0,
+      color: "black",
       alignItems: "center",
       justifyContent: "flex-start",
     },

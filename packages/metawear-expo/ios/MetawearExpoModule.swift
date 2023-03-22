@@ -16,21 +16,27 @@ func bObj(obj: MetawearExpoModule) -> UnsafeMutableRawPointer {
 func bPtr(ptr: UnsafeRawPointer) -> MetawearExpoModule {
   return bridge(ptr: ptr)
 }
-let DISCONNECT_EVENT: String = "disconnect"
+
+struct State : Codable {
+  var connected: Bool = false
+}
+
+
+let STATE_UPDATE: String = "state-event"
 let STREAM_ACC_DATA: String = "stream-acc-data"
 let STREAM_GYRO_DATA: String = "stream-gyro-data"
 public class MetawearExpoModule: Module {
-  var device: MetaWear?
+  var device: MetaWear? = nil
   var streamingCleanup: [OpaquePointer: () -> Void] = [:]
+
+  func setState(state: State) {
+    sendEvent(STATE_UPDATE, ["connected": state.connected])
+  }
 
   @objc
   func streamAccDataEvent(data: [Double]) {
     do {
-      let jsonData: Data = try JSONEncoder().encode(data)
-      let jsonString: String = String(data: jsonData, encoding: .utf8)!
-      sendEvent(STREAM_ACC_DATA, [
-        "data": jsonString
-      ])
+      sendEvent(STREAM_ACC_DATA, ["data": data])
     }
     catch { print("error") }
   }
@@ -54,21 +60,34 @@ public class MetawearExpoModule: Module {
     Name("MetawearExpo")
 
     // Defines event names that the module can send to JavaScript.
-    Events(DISCONNECT_EVENT,STREAM_ACC_DATA,STREAM_GYRO_DATA)
+    Events(STATE_UPDATE,STREAM_ACC_DATA,STREAM_GYRO_DATA)
 
-    AsyncFunction("battery") { (promise: Promise) in
-      if let board = self.device?.board {
-          let batt = mbl_mw_settings_get_battery_state_data_signal(board);
-          batt?.read().continueOnSuccessWith {
-            let b = String(($0.valueAs() as MblMwBatteryState).charge)
-            promise.resolve(b)
-          }
+    Function("isConnected") {
+      return self.device !== nil
+    }
+
+    Function("mac") { (message: String) in
+      return self.device?.mac
+    }
+
+    AsyncFunction("forget") { (promise: Promise) in
+      MetaWearScanner.shared.retrieveSavedMetaWearsAsync().continueOnSuccessWith { devices in
+        for device in devices {
+          device.clearAndReset()
+          device.forget()
+          self.setState(state: State(connected: false))
+          promise.resolve()
+        }
       }
     }
 
-    AsyncFunction("mac") { (promise: Promise) in
-      if let device = self.device {
-        promise.resolve(device.mac)
+    AsyncFunction("battery") { (promise: Promise) in
+      if let board = self.device?.board {
+        let batt = mbl_mw_settings_get_battery_state_data_signal(board);
+        batt?.read().continueOnSuccessWith {
+          let b = String(($0.valueAs() as MblMwBatteryState).charge)
+          promise.resolve(b)
+        }
       }
     }
 
@@ -92,13 +111,14 @@ public class MetawearExpoModule: Module {
           MetaWearScanner.shared.stopScan()
           device.connectAndSetup().continueWith { t in
             if t.error != nil {
-              promise.resolve("error: could not connect 1")
+              self.setState(state: State(connected: false))
             } else {
               t.result?.continueWith { t in
-                  self.sendEvent(DISCONNECT_EVENT, ["message": "disconnect"])
+                self.setState(state: State(connected: false))
               }
               device.remember()
               self.device = device
+              self.setState(state: State(connected: true))
               promise.resolve("connected!")
             }
           }
