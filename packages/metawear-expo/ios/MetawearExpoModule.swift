@@ -8,15 +8,45 @@ import React
 import MessageUI
 import BoltsSwift
 
-struct State : Codable {
-    var signalStrength: String?;
-    var macAdress: String?;
-    var batteryPercent: String?;
+
+func bObj(obj: MetawearExpoModule) -> UnsafeMutableRawPointer {
+  return bridge(obj: obj)
 }
 
-let DISCONNECT_EVENT = "disconnect"
+func bPtr(ptr: UnsafeRawPointer) -> MetawearExpoModule {
+  return bridge(ptr: ptr)
+}
+let DISCONNECT_EVENT: String = "disconnect"
+let STREAM_ACC_DATA: String = "stream-acc-data"
+let STREAM_GYRO_DATA: String = "stream-gyro-data"
 public class MetawearExpoModule: Module {
   var device: MetaWear?
+  var streamingCleanup: [OpaquePointer: () -> Void] = [:]
+
+  @objc
+  func streamAccDataEvent(data: [Double]) {
+    do {
+      let jsonData: Data = try JSONEncoder().encode(data)
+      let jsonString: String = String(data: jsonData, encoding: .utf8)!
+      sendEvent(STREAM_ACC_DATA, [
+        "data": jsonString
+      ])
+    }
+    catch { print("error") }
+  }
+
+  @objc
+  func streamGyroDataEvent(data: [Double]) {
+    do {
+      let jsonData: Data = try JSONEncoder().encode(data)
+      let jsonString: String = String(data: jsonData, encoding: .utf8)!
+      sendEvent(STREAM_GYRO_DATA, [
+        "data": jsonString
+      ])
+    }
+    catch { print("error") }
+  }
+
   // Each module class must implement the definition function. The definition consists of components
   // that describes the module's functionality and behavior.
   // See https://docs.expo.dev/modules/module-api for more details about available components.
@@ -24,7 +54,7 @@ public class MetawearExpoModule: Module {
     Name("MetawearExpo")
 
     // Defines event names that the module can send to JavaScript.
-    Events(DISCONNECT_EVENT)
+    Events(DISCONNECT_EVENT,STREAM_ACC_DATA,STREAM_GYRO_DATA)
 
     AsyncFunction("battery") { (promise: Promise) in
       if let board = self.device?.board {
@@ -73,6 +103,55 @@ public class MetawearExpoModule: Module {
             }
           }
         }
+      }
+    }
+
+
+    AsyncFunction("startStream") { (promise: Promise) in
+      print("starting stream")
+      mbl_mw_gyro_bmi160_set_range(device?.board, MBL_MW_GYRO_BOSCH_RANGE_2000dps)
+      mbl_mw_gyro_bmi160_set_odr(device?.board, MBL_MW_GYRO_BOSCH_ODR_50Hz)
+      mbl_mw_acc_bosch_set_range(device?.board, MBL_MW_ACC_BOSCH_RANGE_16G)
+      mbl_mw_acc_set_odr(device?.board, 50)
+      mbl_mw_acc_bosch_write_acceleration_config(device?.board)
+      mbl_mw_gyro_bmi160_write_config(device?.board)
+
+      let b = bObj(obj: self)
+      let signalAcc = mbl_mw_acc_bosch_get_acceleration_data_signal(device?.board)!
+      mbl_mw_datasignal_subscribe(signalAcc, b) {(context, obj) in
+          let acceleration: MblMwCartesianFloat = obj!.pointee.valueAs()
+          let _self: MetawearExpoModule = bPtr(ptr: context!)
+          let x = Double(acceleration.x)
+          let y = Double(acceleration.y)
+          let z = Double(acceleration.z)
+          _self.streamAccDataEvent(data: [x,y,z] )
+      }
+      let signalGyro = mbl_mw_gyro_bmi160_get_rotation_data_signal(device?.board)!
+      mbl_mw_datasignal_subscribe(signalGyro, b) {(context, obj) in
+          let gryo: MblMwCartesianFloat = obj!.pointee.valueAs()
+          let _self: MetawearExpoModule = bPtr(ptr: context!)
+          let x = Double(gryo.x)
+          let y = Double(gryo.y)
+          let z = Double(gryo.z)
+          _self.streamGyroDataEvent(data: [x,y,z] )
+      }
+
+      mbl_mw_acc_enable_acceleration_sampling(device?.board)
+      mbl_mw_acc_start(device?.board)
+
+      mbl_mw_gyro_bmi160_enable_rotation_sampling(device?.board)
+      mbl_mw_gyro_bmi160_start(device?.board)
+
+
+      streamingCleanup[signalAcc] = {
+          mbl_mw_acc_stop(self.device?.board)
+          mbl_mw_acc_disable_acceleration_sampling(self.device?.board)
+          mbl_mw_datasignal_unsubscribe(signalAcc)
+      }
+      streamingCleanup[signalGyro] = {
+          mbl_mw_gyro_bmi160_stop(self.device?.board)
+          mbl_mw_gyro_bmi160_disable_rotation_sampling(self.device?.board)
+          mbl_mw_datasignal_unsubscribe(signalGyro)
       }
     }
 
