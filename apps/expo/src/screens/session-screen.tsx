@@ -24,11 +24,19 @@ type RecordProps = NativeStackScreenProps<
   'Session'
 >;
 
-export const SessionPage = ({ route }: RecordProps) => {
+export const SessionPage = ({ route, navigation }: RecordProps) => {
   const theme = useMyTheme()
   const { id } = route.params;
 
   const sessionQuery = trpc.session.getById.useQuery({ id: id });
+
+  const utils = trpc.useContext();
+  const { mutate } = trpc.session.deleteById.useMutation({
+    async onSuccess() {
+      await utils.session.invalidate()
+    },
+  });
+
 
   if (sessionQuery.isFetching === null) {
     return (
@@ -88,7 +96,8 @@ export const SessionPage = ({ route }: RecordProps) => {
           textColor='white'
           icon='delete'
           onPress={async () => {
-            //delete
+            mutate({ id })
+            navigation.navigate('Record', {})
           }}
         >
           Delete

@@ -11,12 +11,13 @@ type RecordProps = BottomTabScreenProps<RecordParamList, 'Record'>
 
 export const Record = ({ navigation }: RecordProps) => {
 
-  const { data: sessions } = trpc.session.recent.useQuery({ limit: 10 });
+  const { data: sessions, isFetching } = trpc.session.recent.useQuery({ limit: 10 });
 
   return (
     <View className='bg-white'>
       <Streamer />
       <SessionList
+        fetching={isFetching}
         sessions={sessions}
         navigate={(id) => {
           navigation.navigate('Session', { id });

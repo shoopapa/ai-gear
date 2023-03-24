@@ -12,12 +12,13 @@ import { useMyTheme } from '../perfereneces';
 type SessionListProps = {
   sessions?: inferRouterOutputs<typeof sessionRouter>['recent'];
   navigate: (id: string) => void;
+  fetching: boolean
 };
 
-export const SessionList = ({ sessions, navigate }: SessionListProps) => {
+export const SessionList = ({ sessions, navigate, fetching }: SessionListProps) => {
   const theme = useMyTheme()
 
-  if (!sessions) {
+  if (!sessions || fetching) {
     return (
       <View style={{ height: '50%', marginTop: "4%", backgroundColor: 'white' }}>
         <ActivityIndicator animating={true} color={theme.colors.primary} />
