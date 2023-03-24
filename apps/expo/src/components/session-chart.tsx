@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, Text, View } from 'react-native';
+import { Dimensions, View } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { useMyTheme } from '../perfereneces';
 
@@ -27,10 +27,7 @@ const disabledLineColors = [
 export const SessionChart = ({ data, disabled }: SessionChartProps) => {
   const theme = useMyTheme()
   return (
-    <View style={{
-      height: '100%',
-      width: '100%',
-    }}>
+    <View className='w-full h-56'>
       <LineChart
         withShadow={false}
         style={{

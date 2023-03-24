@@ -1,11 +1,11 @@
 import { DataEventPayload, startStream, stopStream } from '@acme/metawear-expo';
 import Constants from 'expo-constants';
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { Pressable, View } from 'react-native'
 import { Button } from 'react-native-paper';
 import { SessionChart } from '../../components/session-chart';
 import DeviceContext from '../../device/device-context';
-import { styles, useMyTheme } from '../../perfereneces';
+import { useMyTheme } from '../../perfereneces';
 import { trpc } from '../../utils/trpc';
 
 type formatSessionDataForDbInput = {
@@ -74,6 +74,7 @@ export const Streamer = () => {
     if (streaming) {
       return (
         <Button
+          className='mt-6'
           mode="contained"
           style={{ width: '100%', backgroundColor: colors.error }}
           disabled={!connected}
@@ -133,6 +134,7 @@ export const Streamer = () => {
 
     return (
       <Button
+        className='mt-6'
         mode="contained"
         disabled={!connected}
         textColor='white'
@@ -158,15 +160,11 @@ export const Streamer = () => {
   }
 
   return (
-    <View style={{ ...styles(theme).container, alignItems: 'flex-start' }}>
+    <View style={{ height: '45%' }}>
       <Pressable
-        className='h-60'
-        // onPressIn={startSection}
-        // onPressOut={endSection}
         pressRetentionOffset={1000}
       >
         <SessionChart
-          // data={[previewData, sectionData]}
           data={[previewData]}
           epochStart={0} epochEnd={100}
         />

@@ -39,6 +39,7 @@ export const CombinedDefaultTheme = {
   ...CombinedDefaultTheme1,
   colors: {
     ...CombinedDefaultTheme1.colors,
+    text: "black",
     defaultBackgroundColor: "white",
     primary: "#19489f",
     warningYellow: "#f69220",
@@ -81,6 +82,7 @@ export const styles = (theme: typeof CombinedDefaultTheme) => {
       backgroundColor: theme.colors.defaultBackgroundColor,
     },
     navigatorContent: {
+      color: theme.colors.text,
       backgroundColor: theme.colors.defaultBackgroundColor,
     },
     scrollcontainer: {

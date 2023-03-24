@@ -17,6 +17,9 @@ model Post {
 }
 model Session {
     id          String @id @default(cuid())
+    createdAt DateTime @default(now())
+    name String        @default("NO_NAME")
+    userId String
     gyroT Float[]
     gyroX Float[]
     gyroY Float[]

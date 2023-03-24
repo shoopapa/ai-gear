@@ -3,12 +3,10 @@ import { View } from 'react-native';
 import { Text, Button, ActivityIndicator } from 'react-native-paper';
 import { useAuth } from '@clerk/clerk-expo';
 import { useMyTheme, styles } from '../../perfereneces';
-import Ionicons from '@expo/vector-icons/Ionicons';
-// import * as MetaWear from '../../device/ios/metawear-ios';
-// import DeviceContext from '../../device/device-context';
 
 import { blink, connnect, forget, getConnected } from '@acme/metawear-expo'
 import DeviceContext from '../../device/device-context';
+import { InfoCard } from '../../components/info-card';
 
 const SignOut = () => {
   const theme = useMyTheme()
@@ -105,35 +103,18 @@ const Connect = () => {
 };
 
 
-const InfoCard = ({ textLeft, textRight, icon }: { textLeft: string, textRight: string, icon: string }) => {
-  const { colors } = useMyTheme()
-  return (
-    <View
-      className='m-3 bg-gray-200 rounded-lg h-10 flex-row justify-between content-center'
-    >
-      <View className='self-center flex-row'>
-        <View className='self-center mx-2'>
-          <Ionicons
-            size={25}
-            name={icon as any}
-            color={colors.darkgray}
-          />
-        </View>
-        <Text className='text-black px-2 self-center'>{textLeft}</Text>
-      </View>
-      <Text className='text-black px-5 self-center'>{textRight}</Text>
-    </View>
-  )
-}
+
 export const Device = () => {
   const theme = useMyTheme()
 
   return (
     <View style={styles(theme).container}>
-      <View className='w-full'>
-        <Text className='m-5 color-black border-1 border-gray-300 text-l'>Device Info</Text>
+      <View className='w-11/12'>
+        <Text className='m-3 color-black border-1 border-gray-300 text-l'>Device Info</Text>
         <InfoCard icon='bluetooth' textLeft='Status' textRight={device?.isConnected ? 'Connected' : 'Disconnected'} />
+        <View className='p-2'></View>
         <InfoCard icon='server' textLeft='Mac Address' textRight={device?.macAdress} />
+        <View className='p-2'></View>
         <InfoCard icon='battery-half-sharp' textLeft='Battery' textRight={device?.batteryPercent} />
       </View>
       <View className='w-full'>
