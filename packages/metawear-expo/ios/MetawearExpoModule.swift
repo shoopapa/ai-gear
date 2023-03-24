@@ -34,7 +34,8 @@ public class MetawearExpoModule: Module {
   func setState(state: State) {
     sendEvent(STATE_UPDATE, [
         "connected": state.connected,
-        "streaming": state.streaming
+        "streaming": state.streaming,
+        "mac": self.device?.mac ?? ""
     ])
   }
 
@@ -61,7 +62,7 @@ public class MetawearExpoModule: Module {
       return self.device !== nil
     }
 
-    Function("mac") { (message: String) in
+    Function("mac") {
       return self.device?.mac
     }
 

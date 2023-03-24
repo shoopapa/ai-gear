@@ -41,7 +41,7 @@ export const sessionRouter = router({
         where: {
           userId: ctx.auth.userId,
         },
-        orderBy: { createdAt: "asc" },
+        orderBy: { createdAt: "desc" },
         take: input.limit,
       });
     }),

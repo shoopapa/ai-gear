@@ -4,7 +4,7 @@ import { Text, Button, ActivityIndicator } from 'react-native-paper';
 import { useAuth } from '@clerk/clerk-expo';
 import { useMyTheme, styles } from '../../perfereneces';
 
-import { blink, connnect, forget, getConnected } from '@acme/metawear-expo'
+import { battery, blink, connnect, forget } from '@acme/metawear-expo'
 import DeviceContext from '../../device/device-context';
 import { InfoCard } from '../../components/info-card';
 
@@ -43,7 +43,7 @@ const Connect = () => {
   const [blinking, setblinking] = useState(false);
   const [isScanning, setisScanning] = useState(false)
 
-  const { connected } = useContext(DeviceContext)
+  const { connected, mac } = useContext(DeviceContext)
 
   if (isScanning === true) {
     return <ActivityIndicator animating={true} color={theme.colors.primary} />;
@@ -106,16 +106,27 @@ const Connect = () => {
 
 export const Device = () => {
   const theme = useMyTheme()
+  const { mac, connected } = useContext(DeviceContext)
+
+  const [bat, setBat] = useState("")
+  useEffect(() => {
+    if (connected === false) {
+      setBat('')
+    } else {
+      battery().then(b => setBat(b))
+    }
+  }, [connected])
+
 
   return (
     <View style={styles(theme).container}>
       <View className='w-11/12'>
         <Text className='m-3 color-black border-1 border-gray-300 text-l'>Device Info</Text>
-        <InfoCard icon='bluetooth' textLeft='Status' textRight={device?.isConnected ? 'Connected' : 'Disconnected'} />
+        <InfoCard icon='bluetooth' textLeft='Status' textRight={connected ? 'Connected' : 'Disconnected'} />
         <View className='p-2'></View>
-        <InfoCard icon='server' textLeft='Mac Address' textRight={device?.macAdress} />
+        <InfoCard icon='server' textLeft='Mac Address' textRight={mac} />
         <View className='p-2'></View>
-        <InfoCard icon='battery-half-sharp' textLeft='Battery' textRight={device?.batteryPercent} />
+        <InfoCard icon='battery-half-sharp' textLeft='Battery' textRight={bat ? bat + '%' : ''} />
       </View>
       <View className='w-full'>
         <Text className='m-5 color-black border-1 border-gray-300 text-l'>Options</Text>

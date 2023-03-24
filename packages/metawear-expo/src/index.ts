@@ -17,7 +17,7 @@ export const forget = async (): Promise<string> => {
 export const battery = async (): Promise<string> => {
   return await MetawearExpoModule.battery();
 };
-export const mac = (): Promise<string> => {
+export const mac = (): string => {
   return MetawearExpoModule.mac();
 };
 export const getConnected = (): boolean => {
@@ -36,6 +36,7 @@ const emitter = new EventEmitter(
 export type StateEventPayload = {
   connected: boolean;
   streaming: boolean;
+  mac: string;
 };
 
 export const addStateListener = (
