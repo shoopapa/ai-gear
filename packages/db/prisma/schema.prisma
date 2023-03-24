@@ -1,12 +1,12 @@
 // This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// learn more about it in the docs  https //pris.ly/d/prisma-schema
 
 generator client {
     provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "mysql"
+    provider = "postgres"
     url      = env("DATABASE_URL")
 }
 
@@ -14,4 +14,15 @@ model Post {
     id      String @id @default(cuid())
     title   String
     content String
+}
+model Session {
+    id          String @id @default(cuid())
+    gyroT Float[]
+    gyroX Float[]
+    gyroY Float[]
+    gyroZ Float[]
+    accelerationT Float[]
+    accelerationX Float[]
+    accelerationY Float[]
+    accelerationZ Float[]
 }

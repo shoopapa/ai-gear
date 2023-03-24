@@ -17,7 +17,6 @@ export const forget = async (): Promise<string> => {
 export const battery = async (): Promise<string> => {
   return await MetawearExpoModule.battery();
 };
-
 export const mac = (): Promise<string> => {
   return MetawearExpoModule.mac();
 };
@@ -42,5 +41,27 @@ export type StateEventPayload = {
 export const addStateListener = (
   listener: (event: StateEventPayload) => void,
 ): Subscription => {
+  emitter.removeAllListeners("state-event");
   return emitter.addListener<StateEventPayload>("state-event", listener);
+};
+
+export type DataEventPayload = {
+  t: number;
+  x: number;
+  y: number;
+  z: number;
+};
+export const startStream = async (
+  accerationListener: (data: DataEventPayload) => void,
+  gyroListener: (data: DataEventPayload) => void,
+) => {
+  emitter.removeAllListeners("stream-acc-data");
+  emitter.removeAllListeners("stream-gyro-data");
+  emitter.addListener<DataEventPayload>("stream-acc-data", accerationListener);
+  emitter.addListener<DataEventPayload>("stream-gyro-data", gyroListener);
+  await MetawearExpoModule.startStream();
+};
+
+export const stopStream = async () => {
+  await MetawearExpoModule.stopStream();
 };

@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Record } from './record';
-// import { SessionPage } from '../../pages/session/session';
 import { styles, useMyTheme } from '../../perfereneces';
 
 

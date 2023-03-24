@@ -47,7 +47,7 @@ export const SessionChart = ({ data, disabled }: SessionChartProps) => {
               const dc = disabledLineColors[i] ?? 'white'
               const lc = lineColors[i] ?? 'white'
               return {
-                data: [1, 2],
+                data: d,
                 color: () => (disabled ? dc : lc)
               };
             }),

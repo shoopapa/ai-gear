@@ -40,19 +40,12 @@ public class MetawearExpoModule: Module {
 
   @objc
   func streamAccDataEvent(data: [Double]) {
-    sendEvent(STREAM_ACC_DATA, ["data": data])
+      sendEvent(STREAM_ACC_DATA, ["t":data[0], "x": data[1],"y":data[2],"z":data[3]])
   }
 
   @objc
   func streamGyroDataEvent(data: [Double]) {
-    do {
-      let jsonData: Data = try JSONEncoder().encode(data)
-      let jsonString: String = String(data: jsonData, encoding: .utf8)!
-      sendEvent(STREAM_GYRO_DATA, [
-        "data": jsonString
-      ])
-    }
-    catch { print("error") }
+      sendEvent(STREAM_GYRO_DATA,  ["t":data[0], "x": data[1],"y":data[2],"z":data[3]])
   }
 
   // Each module class must implement the definition function. The definition consists of components
@@ -142,24 +135,30 @@ public class MetawearExpoModule: Module {
       mbl_mw_acc_bosch_write_acceleration_config(device?.board)
       mbl_mw_gyro_bmi160_write_config(device?.board)
 
+      self.state.streaming = true
+      self.setState(state: self.state)
+
       let b = bObj(obj: self)
       let signalAcc = mbl_mw_acc_bosch_get_acceleration_data_signal(device?.board)!
       mbl_mw_datasignal_subscribe(signalAcc, b) {(context, obj) in
           let acceleration: MblMwCartesianFloat = obj!.pointee.valueAs()
           let _self: MetawearExpoModule = bPtr(ptr: context!)
+          let t = Double(obj!.pointee.epoch)
           let x = Double(acceleration.x)
           let y = Double(acceleration.y)
           let z = Double(acceleration.z)
-          _self.streamAccDataEvent(data: [x,y,z] )
+          _self.streamAccDataEvent(data: [t,x,y,z] )
       }
       let signalGyro = mbl_mw_gyro_bmi160_get_rotation_data_signal(device?.board)!
       mbl_mw_datasignal_subscribe(signalGyro, b) {(context, obj) in
+          
           let gryo: MblMwCartesianFloat = obj!.pointee.valueAs()
           let _self: MetawearExpoModule = bPtr(ptr: context!)
+          let t = Double(obj!.pointee.epoch)
           let x = Double(gryo.x)
           let y = Double(gryo.y)
           let z = Double(gryo.z)
-          _self.streamGyroDataEvent(data: [x,y,z] )
+          _self.streamGyroDataEvent(data: [t,x,y,z] )
       }
 
       mbl_mw_acc_enable_acceleration_sampling(device?.board)
@@ -181,7 +180,14 @@ public class MetawearExpoModule: Module {
       }
     }
 
-
+    AsyncFunction("stopStream") { (promise: Promise) in
+      let signalAcc = mbl_mw_acc_bosch_get_acceleration_data_signal(self.device?.board)!
+      streamingCleanup.removeValue(forKey: signalAcc)?()
+      let signalGryo = mbl_mw_gyro_bmi160_get_rotation_data_signal(self.device?.board)!
+      streamingCleanup.removeValue(forKey: signalGryo)?()
+      self.state.streaming = false
+      self.setState(state: self.state)
+    }
 
 
   }
