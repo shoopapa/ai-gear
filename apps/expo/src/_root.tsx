@@ -5,11 +5,11 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { NavigationContainer } from '@react-navigation/native';
 
-import { HomeScreen } from './screens/home';
 import { useMyTheme, styles } from './perfereneces';
 import { DeviceRoot } from './screens/device/device-tab';
 import DeviceContext from './device/device-context';
 import { addStateListener, StateEventPayload } from '@acme/metawear-expo';
+import { RecordRoot } from './screens/record/record-tab'
 
 
 export type TabParamList = {
@@ -27,7 +27,7 @@ type MainScreenProps = {}
 export const RootScreen = ({ }: MainScreenProps) => {
   const theme = useMyTheme();
 
-  const [deviceState, setdeviceState] = useState<StateEventPayload>({ connected: false })
+  const [deviceState, setdeviceState] = useState<StateEventPayload>({ connected: false, streaming: false })
 
   useEffect(() => {
     addStateListener((e) => {
@@ -59,7 +59,7 @@ export const RootScreen = ({ }: MainScreenProps) => {
           <Tab.Screen
             name="home"
             options={{ tabBarLabel: 'Record' }}
-            component={HomeScreen}
+            component={RecordRoot}
           />
           <Tab.Screen
             name="device-tab"

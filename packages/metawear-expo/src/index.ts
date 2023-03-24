@@ -7,7 +7,6 @@ import {
 // Import the native module. On web, it will be resolved to MetawearExpo.web.ts
 // and on native platforms to MetawearExpo.ts
 import MetawearExpoModule from "./MetawearExpoModule";
-import { ChangeEventPayload } from "./MetawearExpo.types";
 
 export const connnect = async (): Promise<string> => {
   return await MetawearExpoModule.connect();
@@ -37,6 +36,7 @@ const emitter = new EventEmitter(
 
 export type StateEventPayload = {
   connected: boolean;
+  streaming: boolean;
 };
 
 export const addStateListener = (

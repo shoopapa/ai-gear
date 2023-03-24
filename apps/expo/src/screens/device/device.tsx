@@ -57,6 +57,7 @@ const Connect = () => {
         mode="contained"
         style={{ backgroundColor: theme.colors.success, margin: '2%' }}
         icon="bluetooth"
+        textColor='white'
         onPress={async () => {
           setisScanning(true)
           await connnect()

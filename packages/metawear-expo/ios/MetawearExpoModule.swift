@@ -19,6 +19,7 @@ func bPtr(ptr: UnsafeRawPointer) -> MetawearExpoModule {
 
 struct State : Codable {
   var connected: Bool = false
+  var streaming: Bool = false
 }
 
 
@@ -28,17 +29,18 @@ let STREAM_GYRO_DATA: String = "stream-gyro-data"
 public class MetawearExpoModule: Module {
   var device: MetaWear? = nil
   var streamingCleanup: [OpaquePointer: () -> Void] = [:]
+    var state: State = State()
 
   func setState(state: State) {
-    sendEvent(STATE_UPDATE, ["connected": state.connected])
+    sendEvent(STATE_UPDATE, [
+        "connected": state.connected,
+        "streaming": state.streaming
+    ])
   }
 
   @objc
   func streamAccDataEvent(data: [Double]) {
-    do {
-      sendEvent(STREAM_ACC_DATA, ["data": data])
-    }
-    catch { print("error") }
+    sendEvent(STREAM_ACC_DATA, ["data": data])
   }
 
   @objc
@@ -112,14 +114,17 @@ public class MetawearExpoModule: Module {
           MetaWearScanner.shared.stopScan()
           device.connectAndSetup().continueWith { t in
             if t.error != nil {
-              self.setState(state: State(connected: false))
+                self.state.connected = false
+                self.setState(state: self.state)
             } else {
               t.result?.continueWith { t in
-                self.setState(state: State(connected: false))
+                  self.state.connected = false
+                  self.setState(state: self.state)
               }
               device.remember()
               self.device = device
-              self.setState(state: State(connected: true))
+                self.state.connected = true
+                self.setState(state: self.state)
               promise.resolve("connected!")
             }
           }
