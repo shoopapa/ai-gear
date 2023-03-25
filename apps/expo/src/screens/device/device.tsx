@@ -4,7 +4,7 @@ import { Text, Button, ActivityIndicator } from 'react-native-paper';
 import { useAuth } from '@clerk/clerk-expo';
 import { useMyTheme, styles } from '../../perfereneces';
 
-import { battery, blink, connnect, forget } from '@acme/metawear-expo'
+import { battery, blink, connectToRemembered, connnect, forget } from '@acme/metawear-expo'
 import DeviceContext from '../../device/device-context';
 import { InfoCard } from '../../components/info-card';
 
@@ -40,12 +40,11 @@ const device = {
 
 const Connect = () => {
   const theme = useMyTheme()
-  const [blinking, setblinking] = useState(false);
-  const [isScanning, setisScanning] = useState(false)
+  const [blinking, setblinking] = useState(false)
 
-  const { connected, mac } = useContext(DeviceContext)
+  const { connected, scanning } = useContext(DeviceContext)
 
-  if (isScanning === true) {
+  if (scanning === true) {
     return <ActivityIndicator animating={true} color={theme.colors.primary} />;
   }
 
@@ -56,11 +55,7 @@ const Connect = () => {
         style={{ backgroundColor: theme.colors.success, margin: '2%' }}
         icon="bluetooth"
         textColor='white'
-        onPress={async () => {
-          setisScanning(true)
-          await connnect()
-          setisScanning(false)
-        }}
+        onPress={connnect}
       >
         Connect
       </Button>
@@ -90,19 +85,13 @@ const Connect = () => {
         textColor='white'
         disabled={blinking}
         icon="bluetooth-off"
-        onPress={async () => {
-          setisScanning(true)
-          await forget()
-          setisScanning(false);
-        }}
+        onPress={forget}
       >
         Forget
       </Button>
     </>
   );
 };
-
-
 
 export const Device = () => {
   const theme = useMyTheme()
@@ -116,7 +105,6 @@ export const Device = () => {
       battery().then(b => setBat(b))
     }
   }, [connected])
-
 
   return (
     <View style={styles(theme).container}>

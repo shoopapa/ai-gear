@@ -8,37 +8,37 @@ import {
 // and on native platforms to MetawearExpo.ts
 import MetawearExpoModule from "./MetawearExpoModule";
 
-export const connnect = async (): Promise<string> => {
-  return await MetawearExpoModule.connect();
+// connections
+export const connnect = (): void => {
+  return MetawearExpoModule.connect();
 };
-export const forget = async (): Promise<string> => {
-  return await MetawearExpoModule.forget();
+export const connectToRemembered = (): void => {
+  return MetawearExpoModule.connectToRemembered();
 };
+export const forget = (): void => {
+  return MetawearExpoModule.forget();
+};
+
+// utils
 export const battery = async (): Promise<string> => {
   return await MetawearExpoModule.battery();
 };
 export const mac = (): string => {
   return MetawearExpoModule.mac();
 };
-export const getConnected = (): boolean => {
-  return MetawearExpoModule.isConnected();
-};
-
 export const blink = async (): Promise<void> => {
   await MetawearExpoModule.blink();
   return;
 };
-
 const emitter = new EventEmitter(
   MetawearExpoModule ?? NativeModulesProxy.MetawearExpo,
 );
-
 export type StateEventPayload = {
+  scanning: boolean;
   connected: boolean;
   streaming: boolean;
   mac: string;
 };
-
 export const addStateListener = (
   listener: (event: StateEventPayload) => void,
 ): Subscription => {
@@ -46,6 +46,7 @@ export const addStateListener = (
   return emitter.addListener<StateEventPayload>("state-event", listener);
 };
 
+//streaming
 export type DataEventPayload = {
   t: number;
   x: number;

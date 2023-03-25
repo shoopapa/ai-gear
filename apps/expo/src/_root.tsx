@@ -8,7 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useMyTheme, styles } from './perfereneces';
 import { DeviceRoot } from './screens/device/device-tab';
 import DeviceContext from './device/device-context';
-import { addStateListener, StateEventPayload } from '@acme/metawear-expo';
+import { addStateListener, connectToRemembered, StateEventPayload } from '@acme/metawear-expo';
 import { RecordRoot } from './screens/record/record-tab'
 
 
@@ -27,13 +27,15 @@ type MainScreenProps = {}
 export const RootScreen = ({ }: MainScreenProps) => {
   const theme = useMyTheme();
 
-  const [deviceState, setdeviceState] = useState<StateEventPayload>({ connected: false, streaming: false })
+  const [deviceState, setdeviceState] = useState<StateEventPayload>({ connected: false, streaming: false, mac: "", scanning: false })
 
   useEffect(() => {
     addStateListener((e) => {
-      console.log(e)
       setdeviceState(e)
     })
+    setTimeout(() => {
+      connectToRemembered()
+    }, 50);
   }, [])
 
   return (

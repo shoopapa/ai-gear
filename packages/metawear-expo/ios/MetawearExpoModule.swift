@@ -20,6 +20,7 @@ func bPtr(ptr: UnsafeRawPointer) -> MetawearExpoModule {
 struct State : Codable {
   var connected: Bool = false
   var streaming: Bool = false
+  var scanning: Bool = false
 }
 
 
@@ -33,6 +34,7 @@ public class MetawearExpoModule: Module {
 
   func setState(state: State) {
     sendEvent(STATE_UPDATE, [
+        "scanning": state.scanning,
         "connected": state.connected,
         "streaming": state.streaming,
         "mac": self.device?.mac ?? ""
@@ -66,17 +68,7 @@ public class MetawearExpoModule: Module {
       return self.device?.mac
     }
 
-    AsyncFunction("forget") { (promise: Promise) in
-      MetaWearScanner.shared.retrieveSavedMetaWearsAsync().continueOnSuccessWith { devices in
-        for device in devices {
-          device.clearAndReset()
-          device.forget()
-          self.device = nil
-          self.setState(state: State(connected: false))
-          promise.resolve()
-        }
-      }
-    }
+
 
     AsyncFunction("battery") { (promise: Promise) in
       if let board = self.device?.board {
@@ -99,33 +91,95 @@ public class MetawearExpoModule: Module {
       }
     }
 
+    Function("connect") {
+      self.state.scanning = true
+      self.setState(state: self.state)
 
-    AsyncFunction("connect") { (promise: Promise) in
+      let c = DispatchWorkItem {
+          if self.state.connected == false {
+            print("timing out")
+            MetaWearScanner.shared.stopScan()
+            self.state.scanning = false
+            self.setState(state: self.state)
+          }
+      }
+
+      DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 7, execute: c )
+
       MetaWearScanner.shared.startScan(allowDuplicates: true) { (device) in
-        print("wee found a device!")
+        print("we found a device!")
         // Hooray! We found a MetaWear board, so stop scanning for more
         if device.rssi > -80 {
+          c.cancel()
           MetaWearScanner.shared.stopScan()
           device.connectAndSetup().continueWith { t in
+            self.state.scanning = false
             if t.error != nil {
-                self.state.connected = false
-                self.setState(state: self.state)
+              self.state.connected = false
+              self.setState(state: self.state)
             } else {
               t.result?.continueWith { t in
-                  self.state.connected = false
-                  self.setState(state: self.state)
+                self.state.connected = false
+                self.setState(state: self.state)
               }
               device.remember()
               self.device = device
-                self.state.connected = true
-                self.setState(state: self.state)
-              promise.resolve("connected!")
+              self.state.connected = true
+              self.setState(state: self.state)
             }
           }
         }
       }
     }
 
+    Function("connectToRemembered") {
+      self.state.scanning = true
+      self.setState(state: self.state)
+
+      let c = DispatchWorkItem {
+        if self.state.connected == false {
+          print("timing out")
+          MetaWearScanner.shared.stopScan()
+          self.state.scanning = false
+          self.setState(state: self.state)
+        }
+      }
+
+      DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5, execute: c )
+
+      MetaWearScanner.shared.retrieveSavedMetaWearsAsync().continueOnSuccessWith { array in
+        if let savedDevice = array.first {
+          savedDevice.connectAndSetup().continueWith { t in
+            c.cancel()
+            self.state.scanning = false
+            if t.error != nil {
+              self.state.connected = false
+              self.setState(state: self.state)
+            } else {
+              t.result?.continueWith { t in
+                self.state.connected = false
+                self.setState(state: self.state)
+              }
+              savedDevice.remember()
+              self.device = savedDevice
+              self.state.connected = true
+              self.setState(state: self.state)
+            }
+          }
+        }
+      }
+    }
+
+    Function("forget") {
+      MetaWearScanner.shared.retrieveSavedMetaWearsAsync().continueOnSuccessWith { devices in
+        for device in devices {
+          device.clearAndReset()
+          device.forget()
+        }
+        self.state.connected = false
+        self.setState(state: self.state)
+      }
+    }
 
     AsyncFunction("startStream") { (promise: Promise) in
       print("starting stream")
@@ -152,7 +206,7 @@ public class MetawearExpoModule: Module {
       }
       let signalGyro = mbl_mw_gyro_bmi160_get_rotation_data_signal(device?.board)!
       mbl_mw_datasignal_subscribe(signalGyro, b) {(context, obj) in
-          
+
           let gryo: MblMwCartesianFloat = obj!.pointee.valueAs()
           let _self: MetawearExpoModule = bPtr(ptr: context!)
           let t = Double(obj!.pointee.epoch)
