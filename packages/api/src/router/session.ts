@@ -41,6 +41,28 @@ export const sessionRouter = router({
         where: {
           userId: ctx.auth.userId,
         },
+        select: {
+          name: true,
+          id: true,
+          createdAt: true,
+        },
+        orderBy: { createdAt: "desc" },
+        take: input.limit,
+      });
+    }),
+  recentWithDisplayData: protectedProcedure
+    .input(z.object({ limit: z.number() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.session.findMany({
+        where: {
+          userId: ctx.auth.userId,
+        },
+        select: {
+          name: true,
+          id: true,
+          createdAt: true,
+          accelerationX: true,
+        },
         orderBy: { createdAt: "desc" },
         take: input.limit,
       });
