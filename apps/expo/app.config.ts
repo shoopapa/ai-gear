@@ -4,9 +4,9 @@ const CLERK_PUBLISHABLE_KEY =
   "pk_test_ZXhwZXJ0LWFsaWVuLTkxLmNsZXJrLmFjY291bnRzLmRldiQ";
 
 const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
-  scheme: "com.jdavis.aigear",
+  scheme: "com.jdavis.ai-gear",
   name: "AI Gear",
-  slug: "aigear",
+  slug: "ai-gear",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/icon.png",
@@ -22,14 +22,14 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
   assetBundlePatterns: ["**/*"],
   ios: {
     supportsTablet: true,
-    bundleIdentifier: "com.jdavis.aigear",
+    bundleIdentifier: "com.jdavis.ai-gear",
     infoPlist: {
       NSBluetoothAlwaysUsageDescription: "Can I use bluetooth",
     },
   },
 
-  currentFullName: "@joedavis29@aigear",
-  originalFullName: "@joedavis29@aigear",
+  currentFullName: "@joedavis29@ai-gear",
+  originalFullName: "@joedavis29@ai-gear",
   android: {
     package: "com.jdavis.aigear",
     adaptiveIcon: {
@@ -39,7 +39,7 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
   },
   extra: {
     eas: {
-      projectId: "your-project-id",
+      projectId: "bf8e06ea-b001-46f1-afe2-779b7007b9d0",
     },
     CLERK_PUBLISHABLE_KEY,
   },
