@@ -41,7 +41,6 @@ export const options = {
   },
   scales: {
     x: {
-      type: 'linear',
       display: false
     },
     y: {
@@ -63,7 +62,6 @@ export const SessionCard: React.FC<{
       </div>
       <div className='ml-5 h-20'>
         <Line
-          //@ts-ignore
           options={options}
           data={{
             labels: session.accelerationX.map((_, i) => i),

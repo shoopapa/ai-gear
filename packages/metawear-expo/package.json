@@ -7,7 +7,7 @@
   "types": "build/index.d.ts",
   "scripts": {
     "dev": "tsc -w",
-    "build": "tsc build"
+    "build": "tsc"
   },
   "keywords": [
     "react-native",

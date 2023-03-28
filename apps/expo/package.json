@@ -4,6 +4,7 @@
   "packageManager": "pnpm@7.13.0",
   "main": "index.ts",
   "scripts": {
+    "eas-build-pre-install": "cd ../../packages/metawear-expo && pnpm i && pnpm build",
     "dev2": "expo start",
     "clean": "rm -rf .expo .turbo node_modules",
     "android": "expo run:android",
@@ -17,6 +18,7 @@
     "@acme/metawear-expo": "*",
     "@acme/tailwind-config": "*",
     "@clerk/clerk-expo": "0.11.3",
+    "@expo/config-plugins": "5.0.2",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.0.11",
     "@react-navigation/native-stack": "^6.7.0",

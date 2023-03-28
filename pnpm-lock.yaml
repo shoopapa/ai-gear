@@ -31,6 +31,7 @@ importers:
       '@babel/preset-env': ^7.19.3
       '@babel/runtime': ^7.19.0
       '@clerk/clerk-expo': 0.11.3
+      '@expo/config-plugins': 5.0.2
       '@react-navigation/bottom-tabs': ^6.5.7
       '@react-navigation/native': ^6.0.11
       '@react-navigation/native-stack': ^6.7.0
@@ -73,6 +74,7 @@ importers:
       '@acme/metawear-expo': link:../../packages/metawear-expo
       '@acme/tailwind-config': link:../../packages/config/tailwind
       '@clerk/clerk-expo': 0.11.3_3rcikltm37eg6tzx7sgmjy4auu
+      '@expo/config-plugins': 5.0.2
       '@react-navigation/bottom-tabs': 6.5.7_oj6rwaj3vsnc6mloheyrgy3ar4
       '@react-navigation/native': 6.1.6_tj3nonr5gneraukzjkxpsiy7yu
       '@react-navigation/native-stack': 6.9.12_oj6rwaj3vsnc6mloheyrgy3ar4
@@ -120,7 +122,7 @@ importers:
       '@acme/api': '*'
       '@acme/db': '*'
       '@acme/tailwind-config': '*'
-      '@clerk/nextjs': ^4.11.0
+      '@clerk/nextjs': ^4.11.14
       '@tanstack/react-query': ^4.16.1
       '@trpc/client': ^10.1.0
       '@trpc/next': ^10.1.0
@@ -146,7 +148,7 @@ importers:
       '@acme/api': link:../../packages/api
       '@acme/db': link:../../packages/db
       '@acme/tailwind-config': link:../../packages/config/tailwind
-      '@clerk/nextjs': 4.11.0_3vryta7zmbcsw4rrqf4axjqggm
+      '@clerk/nextjs': 4.11.14_3vryta7zmbcsw4rrqf4axjqggm
       '@tanstack/react-query': 4.19.1_biqbaboplfbrettd7655fr4n2y
       '@trpc/client': 10.5.0_@trpc+server@10.5.0
       '@trpc/next': 10.5.0_7ajv4fri4atzrhogcejqr2pcvy
@@ -2413,6 +2415,19 @@ packages:
     resolution: {integrity: sha512-LDQvVDv5Kb50ny2s25Fhm3d9QSZimsoUGBsUioj6MC3qbMUCuC8GPIvk/M6IvXx3lYhAs0lwWUQLb+VIEUCECw==}
     dev: false
 
+  /@clerk/backend/0.13.6:
+    resolution: {integrity: sha512-VB9QYEUZ8iVEQzzYn+KMYZiW4Jjl9X1jWwsdPTq4uWBkGf9ufa2tqZSWuIooe2mLsnKyIGyGfYilk+m07geeyQ==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@clerk/types': 3.31.2
+      '@peculiar/webcrypto': 1.4.1
+      '@types/node': 16.18.6
+      deepmerge: 4.2.2
+      node-fetch-native: 1.0.1
+      snakecase-keys: 5.4.4
+      tslib: 2.4.1
+    dev: false
+
   /@clerk/backend/0.9.0:
     resolution: {integrity: sha512-gFAMQwCIiH8tZq63ekePLRoT1uJn0xD0muvpHGk6tU55icFItVlO3zvHzoP/eSo4keNAKhqGzKv3O7DCMDIONQ==}
     engines: {node: '>=14'}
@@ -2495,16 +2510,31 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@clerk/clerk-react/4.12.8_react@18.2.0:
-    resolution: {integrity: sha512-1cou6ZQ8OGb1wc0M3nwTxvSVFqt8ZCgI+mBDy4+BBYhKaP5INenmg6HmEMCswq3YzsHTiHFTIYMAcM8oGkku4Q==}
+  /@clerk/clerk-react/4.12.9_react@18.2.0:
+    resolution: {integrity: sha512-wSR7iA+NO2+cydd3Z6rd37vKrxSESreUvtyUALPNXNpde8sMr0U4zpFbvMFnXlgBGQgsOuZXDkPofBBacMlrzw==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16'
     dependencies:
-      '@clerk/shared': 0.13.5_react@18.2.0
-      '@clerk/types': 3.31.1
+      '@clerk/shared': 0.13.6_react@18.2.0
+      '@clerk/types': 3.31.2
       react: 18.2.0
       swr: 1.3.0_react@18.2.0
+      tslib: 2.4.1
+    dev: false
+
+  /@clerk/clerk-sdk-node/4.7.17:
+    resolution: {integrity: sha512-skCksUeVWBy/+VoeNiCXJEWTUt+mHAFyI8eQ7zBl0lRvg1T3sQNCHtVdlKROzpJLrnHq6KzU9CjvZCcAlrD75Q==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@clerk/backend': 0.13.6
+      '@clerk/types': 3.31.2
+      '@types/cookies': 0.7.7
+      '@types/express': 4.17.14
+      '@types/node-fetch': 2.6.2
+      camelcase-keys: 6.2.2
+      cookie: 0.5.0
+      snakecase-keys: 3.2.1
       tslib: 2.4.1
     dev: false
 
@@ -2529,7 +2559,7 @@ packages:
     peerDependencies:
       react: '>=16'
     dependencies:
-      '@clerk/types': 3.31.1
+      '@clerk/types': 3.31.2
       react: 18.1.0
     dev: false
 
@@ -2548,18 +2578,18 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@clerk/nextjs/4.11.0_3vryta7zmbcsw4rrqf4axjqggm:
-    resolution: {integrity: sha512-XT0kZb8zUYSlu0TRUVt7rsJzkbwiXcm6+j8v3EQy5mMxe/d+wKUIn8CUnNzxvaeOp+qAmljio24WFNC/7Vgr+A==}
+  /@clerk/nextjs/4.11.14_3vryta7zmbcsw4rrqf4axjqggm:
+    resolution: {integrity: sha512-86ebL1DbNxAV1lexLINIiXls5eBAoSLY7hF2DTG9IY5eGKKIYzZTIWrNi/B37xnh1jgYFKNu5X0jE1gprQv8wQ==}
     engines: {node: '>=14'}
     peerDependencies:
       next: '>=10'
       react: ^17.0.2 || ^18.0.0-0
       react-dom: ^17.0.2 || ^18.0.0-0
     dependencies:
-      '@clerk/backend': 0.9.0
-      '@clerk/clerk-react': 4.12.8_react@18.2.0
-      '@clerk/clerk-sdk-node': 4.7.5
-      '@clerk/types': 3.31.1
+      '@clerk/backend': 0.13.6
+      '@clerk/clerk-react': 4.12.9_react@18.2.0
+      '@clerk/clerk-sdk-node': 4.7.17
+      '@clerk/types': 3.31.2
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -2580,8 +2610,8 @@ packages:
       react: 18.1.0
     dev: false
 
-  /@clerk/shared/0.13.5_react@18.2.0:
-    resolution: {integrity: sha512-AMh9FqoBr7YIRwmAC0FwWHLIqbbqICOWrxuPOr93WXe3Cm3HZVwIpXkaS7Qc+yMKJaaeFj+M7GkVNX7NohsRsQ==}
+  /@clerk/shared/0.13.6_react@18.2.0:
+    resolution: {integrity: sha512-ORFNY6+rwTx6yQVQMftx1SriWL6LBbk6Qvd5723rg0KA1J+oBwr7Y4c9SWIWEph+n/KGFNo69StEKJKxeMmfYA==}
     peerDependencies:
       react: '>=16'
     dependencies:
@@ -2590,6 +2620,13 @@ packages:
 
   /@clerk/types/3.31.1:
     resolution: {integrity: sha512-7xQtN1vUKq5kTdIwcbypiL2Qu9OU+1zS8LtIRFKgxAWt7lO2RW3yZMRVJvoPaTXyGnszyDcOla5lAHVHmKt6aQ==}
+    engines: {node: '>=14'}
+    dependencies:
+      csstype: 3.1.1
+    dev: false
+
+  /@clerk/types/3.31.2:
+    resolution: {integrity: sha512-KUc22kdynQvwdge7xMObmlOtQ2gU9u9BMujsWUUay0+0T4y8YKxXhrOeixuPGmaCedz/1UHQvXR06nvp7vAqVQ==}
     engines: {node: '>=14'}
     dependencies:
       csstype: 3.1.1
@@ -2820,6 +2857,28 @@ packages:
     dependencies:
       node-forge: 1.3.1
       nullthrows: 1.1.1
+    dev: false
+
+  /@expo/config-plugins/5.0.2:
+    resolution: {integrity: sha512-cGp17lNRLIpXSFgLtjiGHAG8C5iEoNUkNJmx/Kd9PEkpwD7VTK17DrwrbnEY4S97BT2yYYc8pZcqGycpD87FDg==}
+    dependencies:
+      '@expo/config-types': 47.0.0
+      '@expo/json-file': 8.2.36
+      '@expo/plist': 0.0.18
+      '@expo/sdk-runtime-versions': 1.0.0
+      '@react-native/normalize-color': 2.1.0
+      chalk: 4.1.2
+      debug: 4.3.4
+      find-up: 5.0.0
+      getenv: 1.0.0
+      glob: 7.1.6
+      resolve-from: 5.0.0
+      semver: 7.3.8
+      slash: 3.0.0
+      xcode: 3.0.1
+      xml2js: 0.4.23
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /@expo/config-plugins/5.0.4:
@@ -3628,7 +3687,7 @@ packages:
       open: 8.4.0
       picocolors: 1.0.0
       tiny-glob: 0.2.9
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: true
 
   /@prisma/client/4.7.1_prisma@4.7.1:
@@ -12016,7 +12075,7 @@ packages:
     engines: {node: ^14.18.0 || >=16.0.0}
     dependencies:
       '@pkgr/utils': 2.3.1
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: true
 
   /tabbable/6.1.1:
@@ -12331,10 +12390,10 @@ packages:
 
   /tslib/2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
+    dev: false
 
   /tslib/2.5.0:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
-    dev: false
 
   /tsutils/3.21.0_typescript@4.9.4:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
