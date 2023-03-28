@@ -22,7 +22,6 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
   assetBundlePatterns: ["**/*"],
   ios: {
     supportsTablet: true,
-    buildNumber: "3",
     bundleIdentifier: "com.jdavis.ai-gear",
     infoPlist: {
       NSBluetoothAlwaysUsageDescription: "Can I use bluetooth",
