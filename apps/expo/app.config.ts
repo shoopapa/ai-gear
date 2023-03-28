@@ -14,7 +14,6 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
   splash: {
     image: "./assets/icon.png",
     resizeMode: "contain",
-    backgroundColor: "black",
   },
   updates: {
     url: "https://u.expo.dev/bf8e06ea-b001-46f1-afe2-779b7007b9d0",
