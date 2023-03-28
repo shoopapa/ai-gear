@@ -7,16 +7,17 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
   scheme: "com.jdavis.ai-gear",
   name: "AI Gear",
   slug: "ai-gear",
-  version: "1.1.0",
+  version: "1.1.1",
   orientation: "portrait",
   icon: "./assets/icon.png",
   userInterfaceStyle: "light",
   splash: {
     image: "./assets/icon.png",
     resizeMode: "contain",
-    backgroundColor: "#2e026d",
+    backgroundColor: "black",
   },
   updates: {
+    url: "https://u.expo.dev/bf8e06ea-b001-46f1-afe2-779b7007b9d0",
     fallbackToCacheTimeout: 0,
   },
   assetBundlePatterns: ["**/*"],
@@ -54,12 +55,7 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
       },
     ],
   ],
-  updates: {
-    url: "https://u.expo.dev/bf8e06ea-b001-46f1-afe2-779b7007b9d0",
-  },
-  runtimeVersion: {
-    policy: "sdkVersion",
-  },
+  runtimeVersion: "1.0.0",
 });
 
 export default defineConfig;

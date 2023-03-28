@@ -16,11 +16,13 @@
     },
     "preview": {
       "distribution": "internal",
+      "channel": "preview",
       "ios": {
         "resourceClass": "medium"
       }
     },
     "production": {
+      "channel": "production",
       "ios": {
         "resourceClass": "medium"
       }
