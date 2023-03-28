@@ -114,7 +114,7 @@ export const Device = () => {
         <View className='p-2'></View>
         <InfoCard icon='server' textLeft='Mac Address' textRight={mac} />
         <View className='p-2'></View>
-        <InfoCard icon='battery-half-sharp' textLeft='Battery' textRight={bat ? bat + '%' : ''} />
+        <InfoCard icon='battery-half-sharp' textLeft='Battery hi' textRight={bat ? bat + '%' : ''} />
       </View>
       <View className='w-full'>
         <Text className='m-5 color-black border-1 border-gray-300 text-l'>Options</Text>
