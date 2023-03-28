@@ -22,7 +22,7 @@
       }
     },
     "production": {
-      "channel": "production",
+      "channel": "main",
       "ios": {
         "resourceClass": "medium"
       }
