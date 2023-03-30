@@ -28,8 +28,8 @@ const getBaseUrl = () => {
    */
   const localhost = Constants.manifest?.debuggerHost?.split(":")[0];
   // if (!localhost)
-  return `http://www.ai-gear.com`;
-  return `http://${localhost}:3000`;
+  return `https://www.ai-gear.com`;
+  // return `http://${localhost}:3000`;
 };
 
 export const TRPCProvider: React.FC<{
