@@ -76,7 +76,7 @@ const Connect = () => {
           setblinking(false);
         }}
       >
-        Blink 2
+        Blink
       </Button>
       <Button
         className='m-2'
