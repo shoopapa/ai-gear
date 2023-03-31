@@ -45,6 +45,7 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
   },
   plugins: [
     ["./expo-plugins/with-modify-gradle.js"],
+    ["./expo-plugins/fix-rn-codegen.js"],
     [
       "expo-build-properties",
       {
