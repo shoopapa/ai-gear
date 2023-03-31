@@ -25,19 +25,6 @@ const SignOut = () => {
   );
 };
 
-const device = {
-  batteryPercent: '',
-  isConnected: true,
-  macAdress: 'poop:mc:donalds',
-  downloadProgress: 0,
-  signalStrength: '',
-  previewStreaming: false,
-  isScanning: false,
-  streaming: false,
-  logging: false,
-};
-
-
 const Connect = () => {
   const theme = useMyTheme()
   const [blinking, setblinking] = useState(false)

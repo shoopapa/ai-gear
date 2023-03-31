@@ -17,7 +17,7 @@ const SignInWithOAuth = () => {
       });
       // Choose your OAuth provider, based upon your instance.
       await signIn.create({
-        strategy: "oauth_discord",
+        strategy: "oauth_google",
         redirectUrl,
       });
 
