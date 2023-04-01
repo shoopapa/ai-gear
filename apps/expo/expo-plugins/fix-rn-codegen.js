@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const { withDangerousMod, withPlugins } = require("@expo/config-plugins");
 const { ExpoConfig } = require("@expo/config-types");
 const {
