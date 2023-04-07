@@ -75,4 +75,15 @@ export const sessionRouter = router({
         data: { ...input, userId: ctx.auth.userId, name },
       });
     }),
+  editName: protectedProcedure
+    .input(z.object({ id: z.string(), name: z.string() }))
+    .mutation(({ ctx, input: { id, name } }) => {
+      if (name === "") {
+        name = randomName();
+      }
+      return ctx.prisma.session.update({
+        where: { id },
+        data: { name },
+      });
+    }),
 });

@@ -1,6 +1,7 @@
 import { useSignUp, useSignIn } from "@clerk/clerk-expo";
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text } from "react-native";
+import { Button } from "react-native-paper";
 
 import * as AuthSession from "expo-auth-session";
 
@@ -9,7 +10,7 @@ const SignInWithOAuth = () => {
   const { signUp } = useSignUp();
   if (!isLoaded) return null;
 
-  const handleSignInWithDiscordPress = async () => {
+  const handleSignInWithGooglePress = async () => {
     try {
       const redirectUrl = AuthSession.makeRedirectUri({
         path: "/oauth-native-callback",
@@ -81,11 +82,11 @@ const SignInWithOAuth = () => {
         AI Gear
       </Text>
       <Button
-        title="Sign in with Discord"
+        textColor='white'
         className="m-10 bg-red"
         mode='contained'
-        onPress={handleSignInWithDiscordPress}
-      ></Button>
+        onPress={handleSignInWithGooglePress}
+      >Sign in with Google</Button>
     </View>
   );
 };

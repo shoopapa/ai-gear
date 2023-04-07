@@ -26,17 +26,20 @@ const getBaseUrl = () => {
    * you'll have to manually set it. NOTE: Port 3000 should work for most but confirm
    * you don't have anything else running on it, or you'd have to change it.
    */
-  const localhost = Constants.manifest?.debuggerHost?.split(":")[0];
-  // if (!localhost)
+  if (Constants.manifest?.logUrl) {
+    return `http://localhost:3000`;
+  }
   return `https://www.ai-gear.com`;
-  // return `http://${localhost}:3000`;
 };
 
 export const TRPCProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
+
   const { getToken } = useAuth();
   const [queryClient] = React.useState(() => new QueryClient());
+  const url = `${getBaseUrl()}/api/trpc`
+  console.log('trpc endpoint:', url)
   const [trpcClient] = React.useState(() =>
     trpc.createClient({
       transformer,
