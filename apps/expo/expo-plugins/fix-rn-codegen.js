@@ -5,6 +5,7 @@ const {
 } = require("@expo/config-plugins/build/utils/generateCode");
 const { readFileSync, writeFileSync } = require("fs");
 const { resolve } = require("path");
+//if you can build the app without this it can be removed
 
 const withFixedDeploymentTarget = (c) => {
   return withDangerousMod(c, [

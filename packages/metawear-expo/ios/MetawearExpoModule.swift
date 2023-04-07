@@ -68,8 +68,6 @@ public class MetawearExpoModule: Module {
       return self.device?.mac
     }
 
-
-
     AsyncFunction("battery") { (promise: Promise) in
       if let board = self.device?.board {
         let batt = mbl_mw_settings_get_battery_state_data_signal(board);
