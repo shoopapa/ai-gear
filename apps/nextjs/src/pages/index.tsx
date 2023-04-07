@@ -18,7 +18,7 @@ const Home: NextPage = () => {
       <main className="flex h-screen flex-col items-center ">
         <div className="container flex flex-row items-center justify-center gap-12 px-4 py-8">
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-            AI Gear HI LEVI
+            AI Gear
           </h1>
           <AuthShowcase />
         </div>
