@@ -8,7 +8,7 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
   name: "AI Gear",
   slug: "ai-gear",
   jsEngine: "hermes",
-  version: "1.1.2",
+  version: "1.2.0",
   orientation: "portrait",
   icon: "./assets/icon.png",
   userInterfaceStyle: "light",
