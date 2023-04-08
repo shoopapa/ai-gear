@@ -11,7 +11,8 @@
     "start": "expo start --dev-client",
     "web": "expo start --web",
     "lint": "eslint . --ext ts,tsx",
-    "ios": "expo run:ios --device"
+    "ios": "expo run:ios --device",
+    "build:ios": "eas build --platform ios --profile production"
   },
   "dependencies": {
     "@acme/api": "*",
