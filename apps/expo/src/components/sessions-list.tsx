@@ -3,31 +3,31 @@ import { ScrollView, View, Text } from 'react-native';
 
 import { List, ActivityIndicator } from 'react-native-paper';
 import { timeAgo } from '../utils/time-ago';
-import { sessionRouter } from '@acme/api/src/router/session';
 
-import type { inferRouterOutputs } from '@trpc/server/dist/core/types';
 import { useMyTheme } from '../perfereneces';
+import { trpc } from '../utils/trpc';
 
 
 type SessionListProps = {
-  sessions?: inferRouterOutputs<typeof sessionRouter>['recent'];
   navigate: (id: string) => void;
-  fetching: boolean
 };
 
-export const SessionList = ({ sessions, navigate, fetching }: SessionListProps) => {
+export const SessionList = ({ navigate }: SessionListProps) => {
   const theme = useMyTheme()
 
-  if (!sessions || fetching) {
+  const { data: sessions, isFetching } = trpc.session.recent.useQuery({ limit: 10 });
+
+  if (!sessions || isFetching) {
     return (
-      <View style={{ height: '50%', marginTop: "4%", backgroundColor: 'white' }}>
+      <View className='mt-1 h-full'>
+        <Text className='m-3'>10 Most Recent Sessions</Text>
         <ActivityIndicator animating={true} color={theme.colors.primary} />
       </View>
     );
   }
 
   return (
-    <View style={{ height: '50%', marginTop: "4%", backgroundColor: 'white' }}>
+    <View className='mt-1 h-full'>
       <Text className='m-3'>10 Most Recent Sessions</Text>
       <View className='h-max'>
         <ScrollView className=' text-black'>
