@@ -27,12 +27,12 @@ const disabledLineColors = [
 export const SessionChart = ({ data, disabled }: SessionChartProps) => {
   const theme = useMyTheme()
   return (
-    <View className='w-full h-56'>
+    <View className='w-11/12 h-56 mb-1'>
       <LineChart
         withShadow={false}
         style={{
           marginBottom: -40,
-          marginLeft: -20,
+          marginLeft: -15,
           marginTop: 20,
           position: 'absolute',
           backgroundColor: theme.colors.defaultBackgroundColor,

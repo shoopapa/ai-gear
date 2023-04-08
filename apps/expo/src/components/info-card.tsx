@@ -52,6 +52,8 @@ export const EditableInfoCard = ({ textLeft, textRight, icon, onTextRightChange 
       </View>
       <View className='self-center bg-transparent'>
         <TextInput
+          underlineColor='transparent'
+          activeUnderlineColor={colors.primary}
           className='self-center bg-transparent'
           autoComplete='off'
           textColor='black'

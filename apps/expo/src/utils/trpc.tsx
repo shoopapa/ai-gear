@@ -27,7 +27,7 @@ const getBaseUrl = () => {
    * you don't have anything else running on it, or you'd have to change it.
    */
   if (Constants.manifest?.logUrl) {
-    return `http://localhost:3000`;
+    return `http://192.168.86.29:3000`;
   }
   return `https://www.ai-gear.com`;
 };
