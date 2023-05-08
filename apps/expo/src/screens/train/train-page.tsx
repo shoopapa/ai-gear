@@ -1,23 +1,26 @@
-import React, { useRef, useState } from 'react';
-import { RecordParamList } from './record-tab';
+import React, { useContext, useRef, useState } from 'react';
+import { TrainParamsList } from './train-tab';
 import { Pressable, View } from 'react-native';
 
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { formatSessionDataForDb, StreamControls } from './streamer'
-import { SessionList } from '../../components/sessions-list';
+import { formatSessionDataForDb, StreamControls } from '../record/streamer'
 import { trpc } from '../../utils/trpc';
 import { DataEventPayload, startStream, stopStream } from '@acme/metawear-expo';
 import Constants from 'expo-constants';
 import { SessionChart } from '../../components/session-chart';
+import DeviceContext from '../../device/device-context';
 
-type RecordProps = BottomTabScreenProps<RecordParamList, 'Record'>
 
+type TrainProps = BottomTabScreenProps<TrainParamsList, 'Train'>
+export const TrainPage = ({ navigation, route: { params } }: TrainProps) => {
+  const { moveId } = params
+  const { streaming } = useContext(DeviceContext)
 
-export const Record = ({ navigation }: RecordProps) => {
+  const [previewData, setpreviewData] = useState<number[]>([])
 
   const gyroData = useRef<DataEventPayload[]>([])
   const accData = useRef<DataEventPayload[]>([])
-  const [previewData, setpreviewData] = useState<number[]>([])
+
   const utils = trpc.useContext();
 
   const PreviewEvent = (n: number = 1) => {
@@ -29,19 +32,33 @@ export const Record = ({ navigation }: RecordProps) => {
     });
   }
 
-  const { mutate } = trpc.session.create.useMutation({
-    onSuccess: async () => utils.session.invalidate()
+  const { mutate } = trpc.move.createRecording.useMutation({
+    onSuccess: async () => utils.move.invalidate()
   });
 
-  const reset = () => {
+  const startRecording = async () => {
     accData.current = []
     gyroData.current = []
     setpreviewData([])
   }
 
+  const stopRecording = async () => {
+    const recording = formatSessionDataForDb({
+      accData: accData.current,
+      gyroData: gyroData.current
+    })
+    mutate({
+      ...recording,
+      moveId,
+      quality: .5
+    })
+  }
+
   return (
     <View className='bg-white h-full'>
       <Pressable
+        onPressIn={startRecording}
+        onPressOut={stopRecording}
         pressRetentionOffset={1000}
       >
         <SessionChart
@@ -51,7 +68,7 @@ export const Record = ({ navigation }: RecordProps) => {
       </Pressable>
       <View className='w-11/12 self-center'>
         <StreamControls
-          hasData={previewData.length > 0}
+          hasData={streaming}
           onStart={() => {
             startStream(
               (a) => {
@@ -65,24 +82,14 @@ export const Record = ({ navigation }: RecordProps) => {
           }}
           onStop={() => {
             stopStream()
+            accData.current = []
+            gyroData.current = []
+            setpreviewData([])
           }}
-          onReset={() => {
-            reset()
-          }}
-          onSave={async () => {
-            mutate(formatSessionDataForDb({
-              accData: accData.current,
-              gyroData: gyroData.current
-            }))
-            reset()
-          }}
+          onReset={() => { }}
+          onSave={() => { }}
         />
       </View>
-      <SessionList
-        navigate={(id) => {
-          navigation.navigate('Session', { id });
-        }}
-      ></SessionList>
     </View>
   );
 }

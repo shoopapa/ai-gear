@@ -106,7 +106,7 @@ export const StreamControls = ({ onReset, onSave, onStart, onStop, hasData }: St
     <Button
       className=''
       mode="contained"
-      disabled={!connected}
+      disabled={!connected || streaming}
       textColor='white'
       style={{
         backgroundColor: colors.primary,

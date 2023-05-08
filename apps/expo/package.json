@@ -5,11 +5,9 @@
   "main": "index.ts",
   "scripts": {
     "eas-build-pre-install": "cd ../../packages/metawear-expo && pnpm i && pnpm build",
-    "dev2": "expo start",
     "clean": "rm -rf .expo .turbo node_modules",
     "android": "expo run:android",
     "start": "expo start --dev-client",
-    "web": "expo start --web",
     "lint": "eslint . --ext ts,tsx",
     "ios": "expo run:ios --device",
     "build:ios": "eas build --platform ios --profile production"

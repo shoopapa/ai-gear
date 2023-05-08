@@ -10,15 +10,18 @@ import { DeviceRoot } from './screens/device/device-tab';
 import DeviceContext from './device/device-context';
 import { addStateListener, connectToRemembered, StateEventPayload } from '@acme/metawear-expo';
 import { RecordRoot } from './screens/record/record-tab'
+import { TrainTab } from './screens/train/train-tab'
 
 
 export type TabParamList = {
-  'home': {};
+  'home-tab': {};
   'device-tab': {}
+  'train-tab': {}
 };
 export const tabIcons: { [K in keyof TabParamList]: any } = {
-  'home': (size: number, color: string) => <Ionicons name={'log-in-outline'} size={size} color={color} />,
-  'device-tab': (size: number, color: string) => <Ionicons name={'ios-list'} size={size} color={color} />
+  'home-tab': (size: number, color: string) => <Ionicons name={'log-in-outline'} size={size} color={color} />,
+  'device-tab': (size: number, color: string) => <Ionicons name={'ios-list'} size={size} color={color} />,
+  'train-tab': (size: number, color: string) => <Ionicons name={'move'} size={size} color={color} />
 };
 const Tab = createBottomTabNavigator<TabParamList>();
 
@@ -59,9 +62,14 @@ export const RootScreen = ({ }: MainScreenProps) => {
           })}
         >
           <Tab.Screen
-            name="home"
+            name="home-tab"
             options={{ tabBarLabel: 'Record' }}
             component={RecordRoot}
+          />
+          <Tab.Screen
+            name="train-tab"
+            options={{ tabBarLabel: 'Train' }}
+            component={TrainTab}
           />
           <Tab.Screen
             name="device-tab"
