@@ -7,6 +7,10 @@ import { TrainParamsList } from './train-tab'
 
 type MovesPageProps = BottomTabScreenProps<TrainParamsList, 'Moves'>
 export const MovesPage = ({ navigation }: MovesPageProps) => {
+  const openModal = () => {
+
+  }
+
   return (
     <View>
       <MoveList
@@ -18,7 +22,7 @@ export const MovesPage = ({ navigation }: MovesPageProps) => {
         textColor='white'
         className="m-10 bg-red"
         mode='contained'
-        onPress={openModal)}
+        onPress={openModal}
       >New</Button>
     </View >
   )
