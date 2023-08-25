@@ -14,12 +14,12 @@ import { TrainTab } from './screens/train/train-tab'
 
 
 export type TabParamList = {
-  'home-tab': {};
+  'record-tab': {};
   'device-tab': {}
   'train-tab': {}
 };
 export const tabIcons: { [K in keyof TabParamList]: any } = {
-  'home-tab': (size: number, color: string) => <Ionicons name={'log-in-outline'} size={size} color={color} />,
+  'record-tab': (size: number, color: string) => <Ionicons name={'log-in-outline'} size={size} color={color} />,
   'device-tab': (size: number, color: string) => <Ionicons name={'ios-list'} size={size} color={color} />,
   'train-tab': (size: number, color: string) => <Ionicons name={'move'} size={size} color={color} />
 };
@@ -62,7 +62,7 @@ export const RootScreen = ({ }: MainScreenProps) => {
           })}
         >
           <Tab.Screen
-            name="home-tab"
+            name="record-tab"
             options={{ tabBarLabel: 'Record' }}
             component={RecordRoot}
           />

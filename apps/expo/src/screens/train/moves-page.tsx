@@ -19,7 +19,7 @@ export const MovesPage = ({ navigation }: MovesPageProps) => {
         }}
       />
       <Button
-        textColor='white'
+        textColor='red'
         className="m-10 bg-red"
         mode='contained'
         onPress={openModal}

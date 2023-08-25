@@ -20,6 +20,8 @@ export const Record = ({ navigation }: RecordProps) => {
   const [previewData, setpreviewData] = useState<number[]>([])
   const utils = trpc.useContext();
 
+  const { data: recordings, isFetching } = trpc.session.recent.useQuery({ limit: 10 });
+
   const PreviewEvent = (n: number = 1) => {
     setpreviewData((v) => {
       if (v.length > parseInt(Constants?.expoConfig?.extra?.PREVIEW_DATA_LENGTH ?? "150", 10)) {
@@ -79,10 +81,12 @@ export const Record = ({ navigation }: RecordProps) => {
         />
       </View>
       <SessionList
+        recordings={recordings}
+        isFetching={isFetching}
         navigate={(id) => {
           navigation.navigate('Session', { id });
         }}
-      ></SessionList>
+      />
     </View>
   );
 }

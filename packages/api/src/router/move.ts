@@ -6,9 +6,8 @@ const createMoveInput = z.object({
   name: z.string(),
 });
 
-const createRecordingInput = z.object({
+const createMoveSession = z.object({
   ...dataInputBase,
-  quality: z.number(),
   moveId: z.string(),
 });
 
@@ -34,9 +33,9 @@ export const moveRouter = router({
       });
     }),
   createRecording: protectedProcedure
-    .input(createRecordingInput)
+    .input(createMoveSession)
     .mutation(({ ctx, input }) => {
-      return ctx.prisma.moveRecording.create({
+      return ctx.prisma.session.create({
         data: { ...input, userId: ctx.auth.userId },
       });
     }),

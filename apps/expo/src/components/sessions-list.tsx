@@ -10,14 +10,18 @@ import { trpc } from '../utils/trpc';
 
 type SessionListProps = {
   navigate: (id: string) => void;
+  recordings?: {
+    id: string;
+    createdAt: Date;
+    name: string;
+  }[]
+  isFetching: boolean
 };
 
-export const SessionList = ({ navigate }: SessionListProps) => {
+export const SessionList = ({ navigate, recordings, isFetching }: SessionListProps) => {
   const theme = useMyTheme()
 
-  const { data: sessions, isFetching } = trpc.session.recent.useQuery({ limit: 10 });
-
-  if (!sessions || isFetching) {
+  if (!recordings || isFetching) {
     return (
       <View className='mt-1 h-full'>
         <Text className='m-3'>10 Most Recent Sessions</Text>
@@ -29,9 +33,9 @@ export const SessionList = ({ navigate }: SessionListProps) => {
   return (
     <View className='mt-1 h-full'>
       <Text className='m-3'>10 Most Recent Sessions</Text>
-      <View className='h-max'>
+      <View>
         <ScrollView className=' text-black'>
-          {sessions.map((s) => {
+          {recordings.map((s) => {
             let t = 'No Create at'
             if (s.createdAt) {
               t = timeAgo.format(new Date(s.createdAt));

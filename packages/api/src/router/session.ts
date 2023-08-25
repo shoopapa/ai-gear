@@ -1,6 +1,7 @@
 import { router, protectedProcedure } from "../trpc";
 import { z } from "zod";
 import { randomName } from "../utils/random-name";
+import { Prisma } from "@acme/db";
 
 const createSessionInput = z.object({
   gyroT: z.array(z.number()),
@@ -35,12 +36,17 @@ export const sessionRouter = router({
       });
     }),
   recent: protectedProcedure
-    .input(z.object({ limit: z.number() }))
+    .input(z.object({ limit: z.number(), moveId: z.string().optional() }))
     .query(({ ctx, input }) => {
+      const where: Prisma.SessionFindFirstArgs["where"] = {
+        userId: ctx.auth.userId,
+        moveId: null,
+      };
+      if (input.moveId) {
+        where.moveId = input.moveId;
+      }
       return ctx.prisma.session.findMany({
-        where: {
-          userId: ctx.auth.userId,
-        },
+        where,
         select: {
           name: true,
           id: true,
