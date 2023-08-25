@@ -61,17 +61,19 @@ export const TrainPage = ({ navigation, route: { params } }: TrainProps) => {
   }
 
   return (
-    <View className='bg-white h-full'>
-      <Pressable
-        onPressIn={startRecording}
-        onPressOut={stopRecording}
-        pressRetentionOffset={1000}
-      >
-        <SessionChart
-          data={[previewData]}
-          epochStart={0} epochEnd={100}
-        />
-      </Pressable>
+    <View className='bg-white h-full flex mb-10'>
+      <View>
+        <Pressable
+          onPressIn={startRecording}
+          onPressOut={stopRecording}
+          pressRetentionOffset={1000}
+        >
+          <SessionChart
+            data={[previewData]}
+            epochStart={0} epochEnd={100}
+          />
+        </Pressable>
+      </View>
       <View className='w-11/12 self-center'>
         <StreamControls
           hasData={streaming}
@@ -94,16 +96,18 @@ export const TrainPage = ({ navigation, route: { params } }: TrainProps) => {
           onSave={() => { }}
         />
       </View>
-      <SessionList
-        recordings={recordings ? recordings.map((r, i) => ({
-          ...r,
-          name: `#${i}`,
-        })) : undefined}
-        isFetching={isFetching}
-        navigate={(id) => {
-          navigation.navigate('Session', { id });
-        }}
-      />
+      <View style={{ flex: 1, alignSelf: 'stretch', margin: 5 }}>
+        <SessionList
+          recordings={recordings ? recordings.map((r, i) => ({
+            ...r,
+            name: `#${i}`,
+          })) : undefined}
+          isFetching={isFetching}
+          navigate={(id) => {
+            navigation.navigate('Session', { id });
+          }}
+        />
+      </View>
     </View>
   );
 }

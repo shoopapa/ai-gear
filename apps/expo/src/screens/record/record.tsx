@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, } from 'react';
 import { RecordParamList } from './record-tab';
-import { Pressable, View } from 'react-native';
+import { Pressable, View, Text } from 'react-native';
 
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { formatSessionDataForDb, StreamControls } from './streamer'
@@ -80,13 +80,16 @@ export const Record = ({ navigation }: RecordProps) => {
           }}
         />
       </View>
-      <SessionList
-        recordings={recordings}
-        isFetching={isFetching}
-        navigate={(id) => {
-          navigation.navigate('Session', { id });
-        }}
-      />
+      <Text className='m-1 ml-3'>Recent Sessions</Text>
+      <View style={{ flex: 1, alignSelf: 'stretch', margin: 5 }}>
+        <SessionList
+          recordings={recordings}
+          isFetching={isFetching}
+          navigate={(id) => {
+            navigation.navigate('Session', { id });
+          }}
+        />
+      </View>
     </View>
   );
 }
