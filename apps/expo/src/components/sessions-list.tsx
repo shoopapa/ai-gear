@@ -31,10 +31,9 @@ export const SessionList = ({ navigate, recordings, isFetching }: SessionListPro
   }
 
   return (
-    <View className='mt-1 h-full'>
-      <Text className='m-3'>10 Most Recent Sessions</Text>
+    <View>
       <View>
-        <ScrollView className=' text-black'>
+        <ScrollView className='text-black'>
           {recordings.map((s) => {
             let t = 'No Create at'
             if (s.createdAt) {

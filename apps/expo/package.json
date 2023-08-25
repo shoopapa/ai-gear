@@ -7,7 +7,7 @@
     "eas-build-pre-install": "cd ../../packages/metawear-expo && pnpm i && pnpm build",
     "clean": "rm -rf .expo .turbo node_modules",
     "android": "expo run:android",
-    "start": "expo start --dev-client",
+    "dev": "expo start --dev-client",
     "lint": "eslint . --ext ts,tsx",
     "ios": "expo run:ios --device",
     "build:ios": "eas build --platform ios --profile production"
