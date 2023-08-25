@@ -18,7 +18,10 @@ model Post {
 model Session {
     id          String @id @default(cuid())
     createdAt DateTime @default(now())
+    move Move?          @relation(fields: [moveId], references: [id])
+    moveId String?
     name String        @default("NO_NAME")
+    quality Float?
     userId String
     gyroT Float[]
     gyroX Float[]
@@ -28,4 +31,12 @@ model Session {
     accelerationX Float[]
     accelerationY Float[]
     accelerationZ Float[]
+}
+
+model Move {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  userId      String
+  name        String
+  session  Session[]
 }

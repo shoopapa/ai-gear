@@ -12,12 +12,15 @@ import { SessionChart } from '../../components/session-chart';
 
 type RecordProps = BottomTabScreenProps<RecordParamList, 'Record'>
 
+
 export const Record = ({ navigation }: RecordProps) => {
 
   const gyroData = useRef<DataEventPayload[]>([])
   const accData = useRef<DataEventPayload[]>([])
   const [previewData, setpreviewData] = useState<number[]>([])
   const utils = trpc.useContext();
+
+  const { data: recordings, isFetching } = trpc.session.recent.useQuery({ limit: 10 });
 
   const PreviewEvent = (n: number = 1) => {
     setpreviewData((v) => {
@@ -78,10 +81,12 @@ export const Record = ({ navigation }: RecordProps) => {
         />
       </View>
       <SessionList
+        recordings={recordings}
+        isFetching={isFetching}
         navigate={(id) => {
           navigation.navigate('Session', { id });
         }}
-      ></SessionList>
+      />
     </View>
   );
 }

@@ -20,16 +20,19 @@ import { useAuth } from "@clerk/clerk-expo";
  */
 export const trpc = createTRPCReact<AppRouter>();
 
+/**
+ * Gets the IP address of your host-machine. If it cannot automatically find it,
+ * you'll have to manually set it. NOTE: Port 3000 should work for most but confirm
+ * you don't have anything else running on it, or you'd have to change it.
+ */
 const getBaseUrl = () => {
-  /**
-   * Gets the IP address of your host-machine. If it cannot automatically find it,
-   * you'll have to manually set it. NOTE: Port 3000 should work for most but confirm
-   * you don't have anything else running on it, or you'd have to change it.
-   */
+  let url = `https://www.ai-gear.com`
   if (Constants.manifest?.logUrl) {
-    return `http://192.168.86.29:3000`;
+    const ip = Constants.manifest?.logUrl?.split(':')[1]?.slice(2)
+    url = `http://${ip}:3000`;
   }
-  return `https://www.ai-gear.com`;
+  console.log('baseUrl:', url)
+  return url;
 };
 
 export const TRPCProvider: React.FC<{

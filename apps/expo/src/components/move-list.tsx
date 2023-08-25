@@ -8,23 +8,19 @@ import { useMyTheme } from '../perfereneces';
 import { trpc } from '../utils/trpc';
 
 
-type SessionListProps = {
+type MoveListProps = {
   navigate: (id: string) => void;
-  recordings?: {
-    id: string;
-    createdAt: Date;
-    name: string;
-  }[]
-  isFetching: boolean
 };
 
-export const SessionList = ({ navigate, recordings, isFetching }: SessionListProps) => {
+export const MoveList = ({ navigate }: MoveListProps) => {
   const theme = useMyTheme()
 
-  if (!recordings || isFetching) {
+  const { data: moves, isFetching } = trpc.move.list.useQuery({ limit: 10 })
+
+  if (!moves || isFetching) {
     return (
       <View className='mt-1 h-full'>
-        <Text className='m-3'>10 Most Recent Sessions</Text>
+        <Text className='m-3'>Your Moves</Text>
         <ActivityIndicator animating={true} color={theme.colors.primary} />
       </View>
     );
@@ -32,13 +28,13 @@ export const SessionList = ({ navigate, recordings, isFetching }: SessionListPro
 
   return (
     <View className='mt-1 h-full'>
-      <Text className='m-3'>10 Most Recent Sessions</Text>
-      <View>
+      <Text className='m-3'>Your Moves</Text>
+      <View className='h-max'>
         <ScrollView className=' text-black'>
-          {recordings.map((s) => {
+          {moves.map((m) => {
             let t = 'No Create at'
-            if (s.createdAt) {
-              t = timeAgo.format(new Date(s.createdAt));
+            if (m.createdAt) {
+              t = timeAgo.format(new Date(m.createdAt));
             }
             return (
               <List.Item
@@ -46,9 +42,9 @@ export const SessionList = ({ navigate, recordings, isFetching }: SessionListPro
                 theme={theme}
                 titleStyle={{ color: 'black' }}
                 descriptionStyle={{ color: 'black' }}
-                onPress={() => navigate(s.id)}
-                key={s.id}
-                title={s.name}
+                onPress={() => navigate(m.id)}
+                key={m.id}
+                title={m.name}
                 description={t}
                 left={() => (
                   <List.Icon style={{ padding: 0, margin: 0 }} color='black' icon="run" />
