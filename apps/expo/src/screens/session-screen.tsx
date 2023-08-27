@@ -32,8 +32,10 @@ export const SessionPage = ({ route, navigation }: RecordProps) => {
 
   const utils = trpc.useContext();
   const { mutate: deleteSession } = trpc.session.deleteById.useMutation({
-    onSuccess: () => {
+    onMutate: () => {
       navigation.goBack()
+    },
+    onSuccess: () => {
       utils.session.invalidate()
     },
   });

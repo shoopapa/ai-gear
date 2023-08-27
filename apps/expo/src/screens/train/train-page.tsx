@@ -51,13 +51,13 @@ export const TrainPage = ({ navigation, route: { params } }: TrainProps) => {
       accData: accData.current,
       gyroData: gyroData.current
     })
+    setpreviewData(() => [])
+    accData.current = []
+    gyroData.current = []
     mutate({
       ...recording,
       moveId,
     })
-    setpreviewData(() => [])
-    accData.current = []
-    gyroData.current = []
   }
 
   return (
