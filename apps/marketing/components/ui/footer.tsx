@@ -94,7 +94,7 @@ export default function Footer() {
           <div className="md:flex md:items-center md:justify-between">
 
             {/* Social links */}
-            <ul className="flex mb-4 md:order-1 md:ml-4 md:mb-0">
+            {/* <ul className="flex mb-4 md:order-1 md:ml-4 md:mb-0">
               <li>
                 <Link href="/" className="flex justify-center items-center text-purple-600 bg-gray-800 hover:text-gray-100 hover:bg-purple-600 rounded-full transition duration-150 ease-in-out" aria-label="Twitter">
                   <svg className="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -132,10 +132,10 @@ export default function Footer() {
                   </svg>
                 </Link>
               </li>
-            </ul>
+            </ul> */}
 
             {/* Copyrights note */}
-            <div className="text-gray-400 text-sm mr-4">&copy; Cruip.com. All rights reserved.</div>
+            <div className="text-gray-400 text-sm mr-4">&copy; AI Gear All rights reserved.</div>
 
           </div>
 

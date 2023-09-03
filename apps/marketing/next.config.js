@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  port,
-};
+const nextConfig = {};
 
 module.exports = nextConfig;

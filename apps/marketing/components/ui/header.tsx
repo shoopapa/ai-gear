@@ -18,6 +18,16 @@ export default function Header() {
 
           {/* Desktop navigation */}
           <nav className="hidden md:flex md:grow">
+            <ul className="flex grow justify-end flex-wrap items-center">
+              <li>
+                <Link
+                  href="/support"
+                  className="font-medium hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out"
+                >
+                  Support
+                </Link>
+              </li>
+            </ul>
             {/* Desktop sign in links */}
             <ul className="flex grow justify-end flex-wrap items-center">
               <li>
