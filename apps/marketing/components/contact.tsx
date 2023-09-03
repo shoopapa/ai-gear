@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -10,23 +10,22 @@ const ContactForm = () => {
     country: 'United States',
     message: '',
     agreeToPrivacyPolicy: false,
-  });
+  })
 
-  const handleInputChange = (e: any) => {
-    const { name, value, type, checked } = e.target;
-    const inputValue = type === 'checkbox' ? checked : value;
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value, type, checked } = e.target as any
+    const inputValue = type === 'checkbox' ? checked : value
 
     setFormData({
       ...formData,
       [name]: inputValue,
-    });
-  };
+    })
+  }
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    // Here, you can implement the logic to send the form data to your backend or support email
-    console.log(formData); // For demonstration purposes, log the form data
-  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log(formData) // For demonstration purposes, log the form data
+  }
 
   return (
     <div className="max-w-4xl mx-auto bg p-6" data-aos="fade-up" data-aos-delay="400">
@@ -117,7 +116,7 @@ const ContactForm = () => {
         </div>
       </form >
     </div >
-  );
-};
+  )
+}
 
-export default ContactForm;
+export default ContactForm
