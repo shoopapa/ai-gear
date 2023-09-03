@@ -32,8 +32,10 @@ export const SessionPage = ({ route, navigation }: RecordProps) => {
 
   const utils = trpc.useContext();
   const { mutate: deleteSession } = trpc.session.deleteById.useMutation({
+    onMutate: () => {
+      navigation.goBack()
+    },
     onSuccess: () => {
-      navigation.navigate('Record', {})
       utils.session.invalidate()
     },
   });
@@ -43,7 +45,6 @@ export const SessionPage = ({ route, navigation }: RecordProps) => {
       utils.session.invalidate()
     }
   })
-
 
   if (!sessionQuery.data) {
     return (
@@ -61,7 +62,6 @@ export const SessionPage = ({ route, navigation }: RecordProps) => {
             sessionQuery.data?.accelerationX ?? [],
             sessionQuery.data?.accelerationY ?? [],
             sessionQuery.data?.accelerationZ ?? [],
-            // sectionData,
           ]}
         />
       </View>

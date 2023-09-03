@@ -13,6 +13,12 @@ type formatSessionDataForDbInput = {
   accData: DataEventPayload[]
 }
 export const formatSessionDataForDb = ({ accData, gyroData }: formatSessionDataForDbInput) => {
+  if (accData.length > gyroData.length) {
+    accData.pop()
+  }
+  if (gyroData.length > accData.length) {
+    gyroData.pop()
+  }
   const accelerationT: number[] = []
   const accelerationX: number[] = []
   const accelerationY: number[] = []
