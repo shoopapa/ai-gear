@@ -1,6 +1,16 @@
 import VideoThumb from '@/public/images/hero-image-01.jpg'
 import ModalVideo from '@/components/modal-video'
 
+
+
+const heroText = {
+  heading: "AI Gear",
+  description:
+    "Elevate your wrestling game with AI Gear, the app that delivers real-time performance insights using sensor tech and your mobile device!",
+  button1Text: "Get the Gear",
+  button2Text: "Download the App",
+}
+
 export default function Hero() {
   return (
     <section>
@@ -19,13 +29,28 @@ export default function Hero() {
           </svg>
         </div>
 
+
         {/* Hero content */}
         <div className="relative pt-32 pb-10 md:pt-40 md:pb-16">
 
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
-            <h1 className="h1 mb-4" data-aos="fade-up">AI Gear</h1>
-            <p className="text-xl text-gray-400 mb-8" data-aos="fade-up" data-aos-delay="200">Elevate your wrestling game with AI Gear, the app that delivers real-time performance insights using sensor tech and your mobile device!</p>
+            <h1 className="h1 mb-4" data-aos="fade-up">{heroText.heading}</h1>
+            <p className="text-xl text-gray-400 mb-8" data-aos="fade-up" data-aos-delay="200">
+              {heroText.description}
+            </p>
+            <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center">
+              <div data-aos="fade-up" data-aos-delay="400">
+                <a className="btn text-white bg-purple-600 hover:bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0" href="#0">
+                  {heroText.button1Text}
+                </a>
+              </div>
+              <div data-aos="fade-up" data-aos-delay="600">
+                <a className="btn text-white bg-gray-700 hover:bg-gray-800 w-full sm:w-auto sm:ml-4" href="#0">
+                  {heroText.button2Text}
+                </a>
+              </div>
+            </div>
           </div>
 
           <ModalVideo
