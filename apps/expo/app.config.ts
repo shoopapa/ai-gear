@@ -8,7 +8,7 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
   name: "AI Gear",
   slug: "ai-gear",
   jsEngine: "hermes",
-  version: "1.2.0",
+  version: "1.3.0",
   orientation: "portrait",
   icon: "./assets/icon.png",
   userInterfaceStyle: "light",
@@ -25,7 +25,7 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
     supportsTablet: true,
     bundleIdentifier: "com.jdavis.ai-gear",
     infoPlist: {
-      NSBluetoothAlwaysUsageDescription: "Can I use bluetooth",
+      NSBluetoothAlwaysUsageDescription: "Allow AI Gear to use bluetooth",
     },
   },
 
