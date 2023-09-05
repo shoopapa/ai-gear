@@ -24,7 +24,6 @@ export const SessionList = ({ navigate, recordings, isFetching }: SessionListPro
   if (!recordings || isFetching) {
     return (
       <View className='mt-1 h-full'>
-        <Text className='m-3'>10 Most Recent Sessions</Text>
         <ActivityIndicator animating={true} color={theme.colors.primary} />
       </View>
     );

@@ -11,7 +11,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 //custom
 import { CombinedDarkTheme, CombinedDefaultTheme, PreferencesContext } from './perfereneces';
 import { RootScreen } from './_root';
-import { SignInSignUpScreen } from "./screens/signin";
+import { AuthRoot } from "./screens/auth/auth-tab";
 
 
 export type AuthParamsList = {
@@ -52,7 +52,7 @@ export const App = () => {
             </TRPCProvider>
           </SignedIn>
           <SignedOut>
-            <SignInSignUpScreen />
+            <AuthRoot />
           </SignedOut>
         </ClerkProvider>
       </PaperProvider>
