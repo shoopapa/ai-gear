@@ -15,7 +15,7 @@ export const InfoCard = ({ textLeft, textRight, icon }: { textLeft: string, text
           <View className='self-center mx-2'>
             <Ionicons
               size={25}
-              name={icon as any}
+              icon={icon}
               color={colors.darkgray}
             />
           </View>
@@ -43,7 +43,7 @@ export const EditableInfoCard = ({ textLeft, textRight, icon, onTextRightChange 
           <View className='self-center mx-2'>
             <Ionicons
               size={25}
-              name={icon as any}
+              icon={icon}
               color={colors.darkgray}
             />
           </View>

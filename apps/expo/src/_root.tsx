@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
-// @ts-ignore
+import React, { useEffect, useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -14,18 +13,18 @@ import { TrainTab } from './screens/train/train-tab'
 
 
 export type TabParamList = {
-  'record-tab': {};
-  'device-tab': {}
-  'train-tab': {}
+  'record-tab': Record<string, never>;
+  'device-tab': Record<string, never>
+  'train-tab': Record<string, never>
 };
-export const tabIcons: { [K in keyof TabParamList]: any } = {
-  'record-tab': (size: number, color: string) => <Ionicons name={'log-in-outline'} size={size} color={color} />,
-  'device-tab': (size: number, color: string) => <Ionicons name={'ios-list'} size={size} color={color} />,
-  'train-tab': (size: number, color: string) => <Ionicons name={'move'} size={size} color={color} />
-};
+export const tabIcons = {
+  'record-tab': (size, color) => <Ionicons name={'log-in-outline'} size={size} color={color} />,
+  'device-tab': (size, color) => <Ionicons name={'ios-list'} size={size} color={color} />,
+  'train-tab': (size, color) => <Ionicons name={'move'} size={size} color={color} />
+} satisfies { [K in keyof TabParamList]: (size: number, color: string) => JSX.Element };
 const Tab = createBottomTabNavigator<TabParamList>();
 
-type MainScreenProps = {}
+type MainScreenProps = Record<string, never>
 
 export const RootScreen = ({ }: MainScreenProps) => {
   const theme = useMyTheme();

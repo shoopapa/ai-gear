@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Provider as PaperProvider, useTheme } from "react-native-paper";
+import { useTheme } from "react-native-paper";
 import {
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
@@ -20,7 +20,9 @@ export type PreferencesContextType = {
 };
 export const initPreferencesContext: PreferencesContextType = {
   isThemeDark: false,
-  toggleTheme: () => {},
+  toggleTheme: () => {
+    console.log("toggleTheme no assigned yet");
+  },
 };
 export const PreferencesContext = React.createContext<PreferencesContextType>(
   initPreferencesContext,
@@ -46,8 +48,11 @@ export const CombinedDefaultTheme = {
     primaryByOpacity: () => {
       return "rgba(25, 72, 159, 1)";
     },
-    disabledPrimary: "#19489fa6",
+    onSurfaceVariant: "black",
+    disabledPrimary: "hsla(219, 73%, 36% / 0.6)",
+    surfaceDisabled: "hsla(219, 73%, 36% / 0.6)",
     accent: "#6595ed",
+    surface: "white",
     gray: "#f1f3f3",
     error: DefaultTheme.colors.error,
     darkgray: "rgb(150 150 150)",
@@ -64,7 +69,10 @@ export const CombinedDarkTheme: typeof CombinedDefaultTheme = {
     primaryByOpacity: () => {
       return "rgba(25, 72, 159, 1)";
     },
-    disabledPrimary: "#19489fa6",
+    onSurfaceVariant: "white",
+    disabledPrimary: "hsla(219, 73%, 36% / 0.6)",
+    surfaceDisabled: "hsla(219, 73%, 36% / 0.6)",
+    surface: "white",
     accent: "#6595ed",
     gray: "#282c34",
     darkgray: "rgb(150 150 150)",
@@ -80,6 +88,8 @@ export const styles = (theme: typeof CombinedDefaultTheme) => {
     TabHeaderContent: {
       color: "white",
       backgroundColor: theme.colors.defaultBackgroundColor,
+      shadowColor: "transparent", // this covers iOS
+      elevation: 0, // this covers Android
     },
     navigatorContent: {
       color: theme.colors.text,

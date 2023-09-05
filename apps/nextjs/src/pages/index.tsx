@@ -30,7 +30,7 @@ const Home: NextPage = () => {
               })}
             </div>
           ) : (
-            <p>Loading...</p>
+            <p>Please Sign In</p>
           )}
 
         </div>

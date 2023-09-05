@@ -15,6 +15,9 @@
       }
     },
     "preview": {
+      "env": {
+        "CLERK_PUBLISHABLE_KEY": "pk_test_ZXhwZXJ0LWFsaWVuLTkxLmNsZXJrLmFjY291bnRzLmRldiQ"
+      },
       "distribution": "internal",
       "channel": "preview",
       "ios": {
@@ -22,6 +25,9 @@
       }
     },
     "production": {
+      "env": {
+        "CLERK_PUBLISHABLE_KEY": "pk_live_Y2xlcmsuYWktZ2Vhci5jb20k"
+      },
       "channel": "main",
       "ios": {
         "resourceClass": "medium"

@@ -6,7 +6,7 @@ import { SessionPage } from '../session-screen';
 
 
 export type RecordParamList = {
-  Record: {};
+  Record: Record<string, never>;
   Session: { id: string };
 };
 

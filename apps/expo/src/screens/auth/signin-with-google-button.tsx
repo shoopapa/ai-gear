@@ -1,11 +1,10 @@
 import { useSignUp, useSignIn } from "@clerk/clerk-expo";
 import React from "react";
-import { View, Text } from "react-native";
 import { Button } from "react-native-paper";
 
 import * as AuthSession from "expo-auth-session";
 
-const SignInWithOAuth = () => {
+export const SignInWithGoogleButton = () => {
   const { isLoaded, signIn, setSession } = useSignIn();
   const { signUp } = useSignUp();
   if (!isLoaded) return null;
@@ -77,18 +76,12 @@ const SignInWithOAuth = () => {
   };
 
   return (
-    <View className="flex-col h-full flex-auto justify-between py-20">
-      <Text className="text-center text-4xl">
-        AI Gear
-      </Text>
-      <Button
-        textColor='white'
-        className="m-10 bg-red"
-        mode='contained'
-        onPress={handleSignInWithGooglePress}
-      >Sign in with Google</Button>
-    </View>
+    <Button
+      textColor='white'
+      buttonColor='#DB4437' // google red
+      className="m-3"
+      mode='contained'
+      onPress={handleSignInWithGooglePress}
+    > Sign in with Google</Button >
   );
 };
-
-export default SignInWithOAuth;

@@ -11,18 +11,18 @@ import { Provider as PaperProvider } from 'react-native-paper';
 //custom
 import { CombinedDarkTheme, CombinedDefaultTheme, PreferencesContext } from './perfereneces';
 import { RootScreen } from './_root';
-import { SignInSignUpScreen } from "./screens/signin";
+import { AuthRoot } from "./screens/auth/auth-tab";
 
 
 export type AuthParamsList = {
-  Home: {};
+  Home: Record<string, never>;
 };
 
 export const App = () => {
 
   const [isThemeDark, setIsThemeDark] = React.useState(false);
 
-  let theme = isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme;
+  const theme = isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme;
 
   const toggleTheme = React.useCallback(() => {
     return setIsThemeDark(!isThemeDark);
@@ -52,7 +52,7 @@ export const App = () => {
             </TRPCProvider>
           </SignedIn>
           <SignedOut>
-            <SignInSignUpScreen />
+            <AuthRoot />
           </SignedOut>
         </ClerkProvider>
       </PaperProvider>

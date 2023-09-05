@@ -1,11 +1,10 @@
 import React from 'react';
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 import { List, ActivityIndicator } from 'react-native-paper';
 import { timeAgo } from '../utils/time-ago';
 
 import { useMyTheme } from '../perfereneces';
-import { trpc } from '../utils/trpc';
 
 
 type SessionListProps = {
@@ -24,7 +23,6 @@ export const SessionList = ({ navigate, recordings, isFetching }: SessionListPro
   if (!recordings || isFetching) {
     return (
       <View className='mt-1 h-full'>
-        <Text className='m-3'>10 Most Recent Sessions</Text>
         <ActivityIndicator animating={true} color={theme.colors.primary} />
       </View>
     );

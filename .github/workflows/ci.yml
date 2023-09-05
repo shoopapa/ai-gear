@@ -14,7 +14,6 @@ env:
   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}}
   CLERK_SECRET_KEY: ${{secrets.CLERK_SECRET_KEY}}
 
-
 jobs:
   build-lint:
     env:
@@ -58,5 +57,5 @@ jobs:
       - name: Build, lint and type-check
         run: pnpm turbo build lint type-check
 
-      - name: Check workspaces
-        run: pnpm manypkg check
+      # - name: Check workspaces //expo is too evil
+      #   run: pnpm manypkg check

@@ -8,7 +8,7 @@ import { TrainParamsList } from './train-tab'
 type MovesPageProps = BottomTabScreenProps<TrainParamsList, 'Moves'>
 export const MovesPage = ({ navigation }: MovesPageProps) => {
   const openModal = () => {
-
+    console.log('not implemented yet')
   }
 
   return (

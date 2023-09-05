@@ -26,7 +26,7 @@ export const trpc = createTRPCReact<AppRouter>();
  * you don't have anything else running on it, or you'd have to change it.
  */
 const getBaseUrl = () => {
-  let url = `https://www.ai-gear.com`
+  let url = `https://app.ai-gear.com`
   if (Constants.manifest?.logUrl) {
     const ip = Constants.manifest?.logUrl?.split(':')[1]?.slice(2)
     url = `http://${ip}:3000`;
