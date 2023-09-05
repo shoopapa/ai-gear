@@ -6,7 +6,6 @@ import { Text } from 'react-native'
 import { View, } from "react-native";
 import { Button, TextInput } from 'react-native-paper';
 import { AuthParamList } from './auth-tab';
-import { SignInWithGoogleButton } from './signin-with-google-button';
 
 
 type SignInWithEmailProps = NativeStackScreenProps<
@@ -32,10 +31,9 @@ export const SignInWithEmail = ({ navigation }: SignInWithEmailProps) => {
         identifier: email,
         password,
       });
-      console.log(completeSignIn)
       await setActive({ session: completeSignIn.createdSessionId });
       navigation.goBack()
-    } catch (err: any) {
+    } catch (err: unknown) {
       seterror(true)
     }
   };

@@ -1,11 +1,10 @@
 import React from 'react';
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 import { List, ActivityIndicator } from 'react-native-paper';
 import { timeAgo } from '../utils/time-ago';
 
 import { useMyTheme } from '../perfereneces';
-import { trpc } from '../utils/trpc';
 
 
 type SessionListProps = {

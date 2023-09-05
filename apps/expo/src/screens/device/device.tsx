@@ -4,7 +4,7 @@ import { Text, Button, ActivityIndicator } from 'react-native-paper';
 import { useAuth } from '@clerk/clerk-expo';
 import { useMyTheme, styles } from '../../perfereneces';
 
-import { battery, blink, connectToRemembered, connnect, forget } from '@acme/metawear-expo'
+import { battery, blink, connnect, forget } from '@acme/metawear-expo'
 import DeviceContext from '../../device/device-context';
 import { InfoCard } from '../../components/info-card';
 

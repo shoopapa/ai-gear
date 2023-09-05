@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Provider as PaperProvider, useTheme } from "react-native-paper";
+import { useTheme } from "react-native-paper";
 import {
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
@@ -20,7 +20,9 @@ export type PreferencesContextType = {
 };
 export const initPreferencesContext: PreferencesContextType = {
   isThemeDark: false,
-  toggleTheme: () => {},
+  toggleTheme: () => {
+    console.log("toggleTheme no assigned yet");
+  },
 };
 export const PreferencesContext = React.createContext<PreferencesContextType>(
   initPreferencesContext,

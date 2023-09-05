@@ -8,7 +8,7 @@ import { SessionPage } from '../session-screen';
 
 export type TrainParamsList = {
   Train: { moveId: string };
-  Moves: {};
+  Moves: Record<string, never>;
   Session: { id: string };
 };
 

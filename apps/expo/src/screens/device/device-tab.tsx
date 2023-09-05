@@ -4,7 +4,7 @@ import { Device } from './device';
 import { useMyTheme, styles } from '../../perfereneces';
 
 export type DeviceParamList = {
-  Device: {};
+  Device: Record<string, never>;
 };
 
 const Stack = createNativeStackNavigator<DeviceParamList>();

@@ -1,12 +1,9 @@
-import { DataEventPayload, startStream, stopStream } from '@acme/metawear-expo';
-import Constants from 'expo-constants';
-import { useContext, useRef, useState } from 'react';
-import { Pressable, View } from 'react-native'
+import { DataEventPayload } from '@acme/metawear-expo';
+import { useContext } from 'react';
+import { View } from 'react-native'
 import { Button } from 'react-native-paper';
-import { SessionChart } from '../../components/session-chart';
 import DeviceContext from '../../device/device-context';
 import { useMyTheme } from '../../perfereneces';
-import { trpc } from '../../utils/trpc';
 
 type formatSessionDataForDbInput = {
   gyroData: DataEventPayload[]
@@ -53,8 +50,8 @@ export const formatSessionDataForDb = ({ accData, gyroData }: formatSessionDataF
 
 export type StreamControlsProps = {
   hasData: boolean
-  onReset: () => void
-  onSave: () => void
+  onReset?: () => void
+  onSave?: () => void
   onStart: () => void
   onStop: () => void
 }

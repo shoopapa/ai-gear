@@ -15,14 +15,14 @@ import { AuthRoot } from "./screens/auth/auth-tab";
 
 
 export type AuthParamsList = {
-  Home: {};
+  Home: Record<string, never>;
 };
 
 export const App = () => {
 
   const [isThemeDark, setIsThemeDark] = React.useState(false);
 
-  let theme = isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme;
+  const theme = isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme;
 
   const toggleTheme = React.useCallback(() => {
     return setIsThemeDark(!isThemeDark);

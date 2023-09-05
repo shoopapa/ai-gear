@@ -1,4 +1,4 @@
-import { ExpoConfig, ConfigContext } from "@expo/config";
+import { ExpoConfig } from "@expo/config";
 import { config } from "dotenv";
 config();
 
@@ -6,7 +6,7 @@ const CLERK_PUBLISHABLE_KEY =
   process.env.CLERK_PUBLISHABLE_KEY ??
   "pk_test_ZXhwZXJ0LWFsaWVuLTkxLmNsZXJrLmFjY291bnRzLmRldiQ";
 
-const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
+const defineConfig = (): ExpoConfig => ({
   scheme: "com.jdavis.ai-gear",
   name: "AI Gear",
   slug: "ai-gear",

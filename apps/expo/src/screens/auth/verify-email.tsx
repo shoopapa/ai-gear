@@ -1,13 +1,13 @@
 import { useSignUp } from '@clerk/clerk-expo';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from "react";
-import { Text, TouchableOpacity } from 'react-native'
+import { Text } from 'react-native'
 
 import { View, } from "react-native";
-import { Button, TextInput } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import { AiGearTextInput } from '../../components/ai-gear-text-input';
 import { AuthParamList } from './auth-tab';
-import { SignInWithGoogleButton } from './signin-with-google-button';
+import { isClerkError } from './clerk-error';
 
 
 
@@ -17,7 +17,9 @@ type SignUpWithEmailProps = NativeStackScreenProps<
   'VerifyEmail'
 >;
 
-export const VerifyEmail = ({ navigation }: SignUpWithEmailProps) => {
+
+
+export const VerifyEmail = ({ }: SignUpWithEmailProps) => {
   const { isLoaded, signUp, setActive } = useSignUp();
 
   const [code, setcode] = useState("");
@@ -35,8 +37,10 @@ export const VerifyEmail = ({ navigation }: SignUpWithEmailProps) => {
       });
 
       await setActive({ session: completeSignUp.createdSessionId });
-    } catch (err: any) {
-      seterrorMessage(err.errors[0].longMessage)
+    } catch (err: unknown) {
+      if (isClerkError(err)) {
+        seterrorMessage(err.errors[0]?.longMessage ?? '')
+      }
     }
   };
 

@@ -22,7 +22,7 @@ export const Record = ({ navigation }: RecordProps) => {
 
   const { data: recordings, isFetching } = trpc.session.recent.useQuery({ limit: 10 });
 
-  const PreviewEvent = (n: number = 1) => {
+  const PreviewEvent = (n = 1) => {
     setpreviewData((v) => {
       if (v.length > parseInt(Constants?.expoConfig?.extra?.PREVIEW_DATA_LENGTH ?? "150", 10)) {
         v.shift();

@@ -8,10 +8,10 @@ import { SignUpWithEmail } from './signup-with-email';
 import { VerifyEmail } from './verify-email';
 
 export type AuthParamList = {
-  'SignInSignUp': {};
-  'SignInWithEmail': {};
-  'SignUpWithEmail': {};
-  'VerifyEmail': {};
+  'SignInSignUp': Record<string, never>;
+  'SignInWithEmail': Record<string, never>;
+  'SignUpWithEmail': Record<string, never>;
+  'VerifyEmail': Record<string, never>;
 };
 
 const Stack = createNativeStackNavigator<AuthParamList>();

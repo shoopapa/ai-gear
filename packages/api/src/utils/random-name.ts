@@ -1,4 +1,4 @@
-let left = [
+const left = [
   "admiring",
   "adoring",
   "affectionate",
@@ -94,7 +94,7 @@ let left = [
   "zen",
 ];
 
-let right = [
+const right = [
   // Muhammad ibn Jābir al-Ḥarrānī al-Battānī was a founding father of astronomy. https://en.wikipedia.org/wiki/Mu%E1%B8%A5ammad_ibn_J%C4%81bir_al-%E1%B8%A4arr%C4%81n%C4%AB_al-Batt%C4%81n%C4%AB
   "albattani",
 
@@ -578,7 +578,7 @@ let right = [
   "yonath",
 ];
 
-let randnum = (n: number) => Math.floor(Math.random() * (n + 1));
+const randnum = (n: number) => Math.floor(Math.random() * (n + 1));
 
 export const randomName = (sep = "_") => {
   return left[randnum(left.length)] + sep + right[randnum(right.length)];

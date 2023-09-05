@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { TrainParamsList } from './train-tab';
 import { Pressable, View } from 'react-native';
 
@@ -29,7 +29,7 @@ export const TrainPage = ({ navigation, route: { params } }: TrainProps) => {
     onSuccess: async () => utils.session.invalidate()
   });
 
-  const PreviewEvent = (n: number = 1) => {
+  const PreviewEvent = (n = 1) => {
     if (!allowPreviewRef.current) return;
     setpreviewData((v) => {
       if (v.length > parseInt(Constants?.expoConfig?.extra?.PREVIEW_DATA_LENGTH ?? "150", 10)) {
@@ -92,8 +92,6 @@ export const TrainPage = ({ navigation, route: { params } }: TrainProps) => {
             gyroData.current = []
             setpreviewData([])
           }}
-          onReset={() => { }}
-          onSave={() => { }}
         />
       </View>
       <View style={{ flex: 1, alignSelf: 'stretch', margin: 5 }}>

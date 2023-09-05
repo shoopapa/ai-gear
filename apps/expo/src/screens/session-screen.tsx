@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { ActivityIndicator, Button, List, Text } from 'react-native-paper';
+import { ActivityIndicator, Button, Text } from 'react-native-paper';
 import { View } from 'react-native';
 import { timeAgo } from '../utils/time-ago';
 import { SessionChart } from '../components/session-chart';

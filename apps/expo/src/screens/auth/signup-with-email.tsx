@@ -1,13 +1,13 @@
 import { useSignUp } from '@clerk/clerk-expo';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from "react";
-import { Text, TouchableOpacity } from 'react-native'
+import { Text } from 'react-native'
 
 import { View, } from "react-native";
-import { Button, TextInput } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import { AiGearTextInput } from '../../components/ai-gear-text-input';
 import { AuthParamList } from './auth-tab';
-import { SignInWithGoogleButton } from './signin-with-google-button';
+import { isClerkError } from './clerk-error';
 
 
 
@@ -18,13 +18,12 @@ type SignUpWithEmailProps = NativeStackScreenProps<
 >;
 
 export const SignUpWithEmail = ({ navigation }: SignUpWithEmailProps) => {
-  const { isLoaded, signUp, setActive } = useSignUp();
+  const { isLoaded, signUp } = useSignUp();
 
   const [username, setusername] = useState("");
   const [emailAddress, setemailAddress] = useState("");
   const [password, setpassword] = useState("");
   const [secureTextEntry, setSecureTextEntry] = useState(true);
-  const [pendingVerification, setPendingVerification] = useState(false);
   const [errorMessage, seterrorMessage] = useState('');
 
   // start the sign up process.
@@ -46,8 +45,10 @@ export const SignUpWithEmail = ({ navigation }: SignUpWithEmailProps) => {
       // change the UI to our pending section.
       navigation.navigate('VerifyEmail', {})
 
-    } catch (err: any) {
-      seterrorMessage(err.errors[0].longMessage)
+    } catch (err: unknown) {
+      if (isClerkError(err)) {
+        seterrorMessage(err.errors[0]?.longMessage ?? '')
+      }
     }
   };
 
