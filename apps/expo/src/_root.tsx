@@ -18,10 +18,10 @@ export type TabParamList = {
   'train-tab': Record<string, never>
 };
 export const tabIcons = {
-  'record-tab': (size: number, color: string) => <Ionicons name={'log-in-outline'} size={size} color={color} />,
-  'device-tab': (size: number, color: string) => <Ionicons name={'ios-list'} size={size} color={color} />,
-  'train-tab': (size: number, color: string) => <Ionicons name={'move'} size={size} color={color} />
-} satisfies { [K in keyof TabParamList]: any };
+  'record-tab': (size, color) => <Ionicons name={'log-in-outline'} size={size} color={color} />,
+  'device-tab': (size, color) => <Ionicons name={'ios-list'} size={size} color={color} />,
+  'train-tab': (size, color) => <Ionicons name={'move'} size={size} color={color} />
+} satisfies { [K in keyof TabParamList]: (size: number, color: string) => JSX.Element };
 const Tab = createBottomTabNavigator<TabParamList>();
 
 type MainScreenProps = Record<string, never>
