@@ -38,8 +38,8 @@ export default function Features() {
 
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
-            <h2 className="h2 mb-4">Elevate your wrestling game with AI Gear, the app that delivers real-time performance insights using sensor tech on your iOS device!</h2>
-            <p className="text-xl text-gray-400">Discover advanced metrics and analysis to improve your performance on the mat. Download AI Gear today!</p>
+            <h2 className="h2 mb-4">{featuresText.heading}</h2>
+            <p className="text-xl text-gray-400">{featuresText.description}</p>
           </div>
 
           {/* Items */}
@@ -90,7 +90,7 @@ export default function Features() {
                   <circle className="stroke-current text-purple-300" cx="13" cy="9" r="3" />
                 </g>
               </svg>
-              <h4 className="h4 mb-2">{featuresText.items[3].title} Stamina</h4>
+              <h4 className="h4 mb-2">{featuresText.items[3].title}</h4>
               <p className="text-lg text-gray-400 text-center">{featuresText.items[3].description}</p>
             </div>
 
