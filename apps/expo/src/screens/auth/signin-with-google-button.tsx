@@ -1,13 +1,18 @@
 import { useSignUp, useSignIn } from "@clerk/clerk-expo";
 import React from "react";
 import { Button } from "react-native-paper";
-
+import { warmUpAsync, coolDownAsync } from 'expo-web-browser';
 import * as AuthSession from "expo-auth-session";
 
 export const SignInWithGoogleButton = () => {
   const { isLoaded, signIn, setSession } = useSignIn();
   const { signUp } = useSignUp();
   if (!isLoaded) return null;
+
+  React.useEffect(() => {
+    warmUpAsync()
+    return () => { coolDownAsync() }
+  }, []);
 
   const handleSignInWithGooglePress = async () => {
     try {
