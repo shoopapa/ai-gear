@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 
 import { List, ActivityIndicator } from 'react-native-paper';
 import { timeAgo } from '../utils/time-ago';
@@ -20,10 +20,16 @@ type SessionListProps = {
 export const SessionList = ({ navigate, recordings, isFetching }: SessionListProps) => {
   const theme = useMyTheme()
 
-  if (!recordings || isFetching) {
+  if (isFetching) {
+    <View className='mt-1 h-full'>
+      <ActivityIndicator animating={true} color={theme.colors.primary} />
+    </View>
+  }
+
+  if (recordings === undefined || recordings.length === 0) {
     return (
       <View className='mt-1 h-full'>
-        <ActivityIndicator animating={true} color={theme.colors.primary} />
+        <Text>No Data</Text>
       </View>
     );
   }
