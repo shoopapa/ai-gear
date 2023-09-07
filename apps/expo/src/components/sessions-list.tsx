@@ -6,7 +6,6 @@ import { timeAgo } from '../utils/time-ago';
 
 import { useMyTheme } from '../perfereneces';
 
-
 type SessionListProps = {
   navigate: (id: string) => void;
   recordings?: {
@@ -21,15 +20,16 @@ export const SessionList = ({ navigate, recordings, isFetching }: SessionListPro
   const theme = useMyTheme()
 
   if (isFetching) {
-    <View className='mt-1 h-full'>
+    <View className='mt-1 flex-col flex-auto items-center justify-center'>
       <ActivityIndicator animating={true} color={theme.colors.primary} />
     </View>
   }
 
   if (recordings === undefined || recordings.length === 0) {
     return (
-      <View className='mt-1 h-full'>
-        <Text>No Data</Text>
+      <View className='mt-1 flex-col flex-auto items-center justify-center'>
+        <Text className='font-Roboto_500Medium text-lg p-1 font-medium'>No Recent Sessions</Text>
+        <Text className='text-lg'>Connect your device to get started!</Text>
       </View>
     );
   }

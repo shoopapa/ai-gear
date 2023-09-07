@@ -31,6 +31,7 @@ importers:
       '@babel/preset-env': ^7.19.3
       '@babel/runtime': ^7.19.0
       '@clerk/clerk-expo': 0.11.3
+      '@expo-google-fonts/roboto': ^0.2.3
       '@expo/config-plugins': 5.0.2
       '@react-navigation/bottom-tabs': ^6.5.7
       '@react-navigation/native': ^6.0.11
@@ -48,6 +49,7 @@ importers:
       expo-auth-session: ~3.8.0
       expo-build-properties: ~0.4.1
       expo-constants: ~14.0.2
+      expo-font: ^11.4.0
       expo-linking: ~3.3.1
       expo-modules-autolinking: ~1.0.0
       expo-random: ~13.0.0
@@ -76,6 +78,7 @@ importers:
       '@acme/metawear-expo': link:../../packages/metawear-expo
       '@acme/tailwind-config': link:../../packages/config/tailwind
       '@clerk/clerk-expo': 0.11.3_xkg5elew5es2gyjfasazkug3tu
+      '@expo-google-fonts/roboto': 0.2.3
       '@expo/config-plugins': 5.0.2
       '@react-navigation/bottom-tabs': 6.5.7_6ikkrh2yrf3ut7qtdkxkkygdya
       '@react-navigation/native': 6.1.6_rou7e4tzf7wt6gfzzwzm2xjc4q
@@ -90,6 +93,7 @@ importers:
       expo-auth-session: 3.8.0_5rqbjkpskv7z7ecvmqgk7mqxsi
       expo-build-properties: 0.4.1_expo@47.0.14
       expo-constants: 14.0.2_expo@47.0.14
+      expo-font: 11.4.0_expo@47.0.14
       expo-linking: 3.3.1_expo@47.0.14
       expo-modules-autolinking: 1.0.2
       expo-random: 13.0.0_expo@47.0.14
@@ -2793,6 +2797,10 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@expo-google-fonts/roboto/0.2.3:
+    resolution: {integrity: sha512-PF6S//ZYWeXfpYTwvY2oEe0d5RnqwR5KMsGjuTgg6y9p/CPK/IkWL+wsbkzjfd+Jck1Q1pRlWOoe5uz42sQFRg==}
     dev: false
 
   /@expo/bunyan/4.0.0:
@@ -7352,6 +7360,15 @@ packages:
 
   /expo-font/11.0.1_expo@47.0.14:
     resolution: {integrity: sha512-LGAIluWZfru0J0n87dzb6pwAB6TVMTEiLcsd/ktozzbn4DlN7SeQy40+ruU6bvAKCOGrnRneYbKSIOGkrd7oNg==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      expo: 47.0.14_@babel+core@7.20.5
+      fontfaceobserver: 2.3.0
+    dev: false
+
+  /expo-font/11.4.0_expo@47.0.14:
+    resolution: {integrity: sha512-nkmezCFD7gR/I6R+e3/ry18uEfF8uYrr6h+PdBJu+3dawoLOpo+wFb/RG9bHUekU1/cPanR58LR7G5MEMKHR2w==}
     peerDependencies:
       expo: '*'
     dependencies:
