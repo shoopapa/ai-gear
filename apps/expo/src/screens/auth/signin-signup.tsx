@@ -17,7 +17,7 @@ export const SignInSignUp = ({ navigation }: SignInSignUpProps) => {
   return (
     <View className="flex-col h-full flex-auto justify-between py-10  pt-40 ">
       <Text className="text-center text-4xl">
-        LOGO HERE
+        AI Gear
       </Text>
       <View className="p-4">
         <SignInWithGoogleButton />
@@ -32,7 +32,7 @@ export const SignInSignUp = ({ navigation }: SignInSignUpProps) => {
           className="m-3"
           mode='outlined'
           onPress={() => { navigation.navigate('SignUpWithEmail', {}) }}
-        >Sign Up</Button>
+        >Sign Up with Email</Button>
       </View>
     </View>
   );

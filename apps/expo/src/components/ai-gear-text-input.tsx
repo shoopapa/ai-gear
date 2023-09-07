@@ -23,7 +23,7 @@ export const AiGearTextInput = ({ value, onChangeText, onRightPress, secureTextE
       value={value}
       right={
         (onRightPress && <TextInput.Icon
-          icon={secureTextEntry ? 'eye' : 'eye-off'}
+          icon={secureTextEntry ? 'eye-off' : 'eye'}
           onPress={onRightPress}
         />)
       }

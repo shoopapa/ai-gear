@@ -1,13 +1,16 @@
 import { useSignUp } from '@clerk/clerk-expo';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState } from "react";
-import { Keyboard, KeyboardAvoidingView, Platform, Text, TouchableWithoutFeedback } from 'react-native'
+import { useHeaderHeight } from '@react-navigation/elements';
+import React, { useEffect, useState } from "react";
+import { Keyboard, KeyboardAvoidingView, Platform, Text, TouchableWithoutFeedback, StyleSheet } from 'react-native'
 
 import { View, } from "react-native";
 import { Button } from 'react-native-paper';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AiGearTextInput } from '../../components/ai-gear-text-input';
 import { AuthParamList } from './auth-tab';
 import { isClerkError } from './clerk-error';
+import { HeaderAdjustedKeyboardAvoidingView } from '../../components/header-adjusted-keyboard-avoiding-view';
 
 
 
@@ -25,6 +28,10 @@ export const SignUpWithEmail = ({ navigation }: SignUpWithEmailProps) => {
   const [password, setpassword] = useState("");
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const [errorMessage, seterrorMessage] = useState('');
+
+  useEffect(() => {
+    setSecureTextEntry(true)
+  }, [])
 
   // start the sign up process.
   const onSignUpPress = async () => {
@@ -53,14 +60,10 @@ export const SignUpWithEmail = ({ navigation }: SignUpWithEmailProps) => {
   };
 
   return (
-    <KeyboardAvoidingView
-      className='h-full'
-      style={{ flex: 1 }}
-      behavior={'height'}
-    >
+    <HeaderAdjustedKeyboardAvoidingView style={{ flex: 1 }}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View className="flex-col flex-auto justify-between p-5">
-          <Text className="text-center text-4xl">
+        <View className="flex-col flex-auto justify-between p-3">
+          <Text className="text-center text-4xl mt-3">
             AI Gear
           </Text>
           <View>
@@ -94,6 +97,6 @@ export const SignUpWithEmail = ({ navigation }: SignUpWithEmailProps) => {
           </Button>
         </View >
       </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+    </HeaderAdjustedKeyboardAvoidingView >
   );
 }
