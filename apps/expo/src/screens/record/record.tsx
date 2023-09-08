@@ -22,13 +22,18 @@ export const Record = ({ navigation }: RecordProps) => {
 
   const { data: recordings, isFetching } = trpc.session.recent.useQuery({ limit: 10 });
 
+  const v = useRef(0)
   const PreviewEvent = (n = 1) => {
-    setpreviewData((v) => {
-      if (v.length > parseInt(Constants?.expoConfig?.extra?.PREVIEW_DATA_LENGTH ?? "150", 10)) {
-        v.shift();
-      }
-      return [...v, n]
-    });
+    v.current += 1
+    if (v.current === 3) {
+      v.current = 0
+      setpreviewData((v) => {
+        if (v.length > parseInt(Constants?.expoConfig?.extra?.PREVIEW_DATA_LENGTH ?? "150", 10)) {
+          v.shift();
+        }
+        return [...v, n]
+      });
+    }
   }
 
   const { mutate } = trpc.session.create.useMutation({
