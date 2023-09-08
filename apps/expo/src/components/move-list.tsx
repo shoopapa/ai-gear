@@ -17,14 +17,14 @@ export const MoveList = ({ navigate }: MoveListProps) => {
 
   const { data: moves, isFetching } = trpc.move.list.useQuery({ limit: 10 })
 
-  if (!moves || isFetching) {
+  if (isFetching || !moves || moves.length === 0) {
     return (
-      <View className='mt-1 h-full'>
-        <Text className='m-3'>Your Moves</Text>
-        <ActivityIndicator animating={true} color={theme.colors.primary} />
+      <View className='mt-1 flex-col h-full flex-auto items-center justify-center'>
+        <ActivityIndicator size='large' animating={true} color={theme.colors.primary} />
       </View>
-    );
+    )
   }
+
 
   return (
     <View className='mt-1 h-full'>
