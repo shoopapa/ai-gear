@@ -5,6 +5,8 @@ import { List, ActivityIndicator } from 'react-native-paper';
 import { timeAgo } from '../utils/time-ago';
 
 import { useMyTheme } from '../perfereneces';
+import { MyText } from './ai-gear-text';
+
 
 type SessionListProps = {
   navigate: (id: string) => void;
