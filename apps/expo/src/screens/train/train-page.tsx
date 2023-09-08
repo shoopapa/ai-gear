@@ -46,7 +46,7 @@ export const TrainPage = ({ navigation, route: { params } }: TrainProps) => {
   }
 
   const stopRecording = async () => {
-    if (allowPreviewRef.current) { return }
+    if (!allowPreviewRef.current) { return }
     allowPreviewRef.current = false
     const recording = formatSessionDataForDb({
       accData: accData.current,
