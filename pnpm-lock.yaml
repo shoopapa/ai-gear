@@ -31,7 +31,6 @@ importers:
       '@babel/preset-env': ^7.19.3
       '@babel/runtime': ^7.19.0
       '@clerk/clerk-expo': 0.11.3
-      '@expo-google-fonts/roboto': ^0.2.3
       '@expo/config-plugins': 5.0.2
       '@react-navigation/bottom-tabs': ^6.5.7
       '@react-navigation/native': ^6.0.11
@@ -49,7 +48,7 @@ importers:
       expo-auth-session: ~3.8.0
       expo-build-properties: ~0.4.1
       expo-constants: ~14.0.2
-      expo-font: ^11.4.0
+      expo-font: 11.0.1
       expo-linking: ~3.3.1
       expo-modules-autolinking: ~1.0.0
       expo-random: ~13.0.0
@@ -57,7 +56,7 @@ importers:
       expo-splash-screen: ~0.17.5
       expo-status-bar: ~1.4.2
       expo-updates: ~0.15.6
-      expo-web-browser: ^12.3.2
+      expo-web-browser: 12.0.0
       javascript-time-ago: ^2.5.9
       nativewind: ^2.0.11
       postcss: ^8.4.19
@@ -78,7 +77,6 @@ importers:
       '@acme/metawear-expo': link:../../packages/metawear-expo
       '@acme/tailwind-config': link:../../packages/config/tailwind
       '@clerk/clerk-expo': 0.11.3_xkg5elew5es2gyjfasazkug3tu
-      '@expo-google-fonts/roboto': 0.2.3
       '@expo/config-plugins': 5.0.2
       '@react-navigation/bottom-tabs': 6.5.7_6ikkrh2yrf3ut7qtdkxkkygdya
       '@react-navigation/native': 6.1.6_rou7e4tzf7wt6gfzzwzm2xjc4q
@@ -93,7 +91,7 @@ importers:
       expo-auth-session: 3.8.0_5rqbjkpskv7z7ecvmqgk7mqxsi
       expo-build-properties: 0.4.1_expo@47.0.14
       expo-constants: 14.0.2_expo@47.0.14
-      expo-font: 11.4.0_expo@47.0.14
+      expo-font: 11.0.1_expo@47.0.14
       expo-linking: 3.3.1_expo@47.0.14
       expo-modules-autolinking: 1.0.2
       expo-random: 13.0.0_expo@47.0.14
@@ -101,7 +99,7 @@ importers:
       expo-splash-screen: 0.17.5_bzqlojoelxfmiwethlgmw5aw3q
       expo-status-bar: 1.4.4
       expo-updates: 0.15.6_expo@47.0.14
-      expo-web-browser: 12.3.2_expo@47.0.14
+      expo-web-browser: 12.0.0_expo@47.0.14
       javascript-time-ago: 2.5.9
       nativewind: 2.0.11_f3xea42f6zrwqyr5c6mbkdauxa
       react: 18.1.0
@@ -2797,10 +2795,6 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  /@expo-google-fonts/roboto/0.2.3:
-    resolution: {integrity: sha512-PF6S//ZYWeXfpYTwvY2oEe0d5RnqwR5KMsGjuTgg6y9p/CPK/IkWL+wsbkzjfd+Jck1Q1pRlWOoe5uz42sQFRg==}
     dev: false
 
   /@expo/bunyan/4.0.0:
@@ -7367,15 +7361,6 @@ packages:
       fontfaceobserver: 2.3.0
     dev: false
 
-  /expo-font/11.4.0_expo@47.0.14:
-    resolution: {integrity: sha512-nkmezCFD7gR/I6R+e3/ry18uEfF8uYrr6h+PdBJu+3dawoLOpo+wFb/RG9bHUekU1/cPanR58LR7G5MEMKHR2w==}
-    peerDependencies:
-      expo: '*'
-    dependencies:
-      expo: 47.0.14_@babel+core@7.20.5
-      fontfaceobserver: 2.3.0
-    dev: false
-
   /expo-json-utils/0.4.0:
     resolution: {integrity: sha512-lK6gjea72XTYafpKNNJaMrBK5dYAX8LFLXrp/M1MKJU4Zy7EHd2rKrLwop3GZts8VdwLHeVcMko79SAbhe3i5Q==}
     dev: false
@@ -7547,16 +7532,6 @@ packages:
     dependencies:
       compare-urls: 2.0.0
       expo: 47.0.14_@babel+core@7.20.5
-    dev: false
-
-  /expo-web-browser/12.3.2_expo@47.0.14:
-    resolution: {integrity: sha512-ohBf+vnRnGzlTleY8EQ2XQU0vRdRwqMJtKkzM9MZRPDOK5QyJYPJjpk6ixGhxdeoUG2Ogj0InvhhgX9NUn4jkg==}
-    peerDependencies:
-      expo: '*'
-    dependencies:
-      compare-urls: 2.0.0
-      expo: 47.0.14_@babel+core@7.20.5
-      url: 0.11.1
     dev: false
 
   /expo/47.0.14_@babel+core@7.20.5:
@@ -10896,10 +10871,6 @@ packages:
       once: 1.4.0
     dev: false
 
-  /punycode/1.4.1:
-    resolution: {integrity: sha512-jmYNElW7yvO7TV33CjSmvSiE2yco3bV2czu/OzDKdMNVZQWfxCblURLhf+47syQRBntjfLdd/H0egrzIG+oaFQ==}
-    dev: false
-
   /punycode/2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
@@ -12946,13 +12917,6 @@ packages:
     dependencies:
       querystringify: 2.2.0
       requires-port: 1.0.0
-    dev: false
-
-  /url/0.11.1:
-    resolution: {integrity: sha512-rWS3H04/+mzzJkv0eZ7vEDGiQbgquI1fGfOad6zKvgYQi1SzMmhl7c/DdRGxhaWrVH6z0qWITo8rpnxK/RfEhA==}
-    dependencies:
-      punycode: 1.4.1
-      qs: 6.11.1
     dev: false
 
   /use-latest-callback/0.1.5:

@@ -13,7 +13,6 @@ import { CombinedDarkTheme, CombinedDefaultTheme, PreferencesContext } from './p
 import { RootScreen } from './_root';
 import { AuthRoot } from "./screens/auth/auth-tab";
 
-import { useFonts, Roboto_500Medium } from '@expo-google-fonts/roboto';
 
 export type AuthParamsList = {
   Home: Record<string, never>;
@@ -36,14 +35,6 @@ export const App = () => {
     }),
     [toggleTheme, isThemeDark]
   );
-
-  const [fontsLoaded, fontError] = useFonts({
-    Roboto_500Medium,
-  });
-
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
 
   return (
     <PreferencesContext.Provider value={preferences}>
