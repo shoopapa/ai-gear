@@ -49,7 +49,7 @@ export const SessionPage = ({ route, navigation }: RecordProps) => {
   if (!sessionQuery.data) {
     return (
       <View className='mt-1 flex-col h-full flex-auto items-center justify-center'>
-        <ActivityIndicator size='large' animating={true} color={theme.colors.primary} />
+        <ActivityIndicator size={30} animating={true} color={theme.colors.primary} />
       </View>
     );
   }

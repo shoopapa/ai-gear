@@ -20,7 +20,7 @@ export const MoveList = ({ navigate }: MoveListProps) => {
   if (isFetching || !moves || moves.length === 0) {
     return (
       <View className='mt-1 flex-col h-full flex-auto items-center justify-center'>
-        <ActivityIndicator size='large' animating={true} color={theme.colors.primary} />
+        <ActivityIndicator size={30} animating={true} color={theme.colors.primary} />
       </View>
     )
   }

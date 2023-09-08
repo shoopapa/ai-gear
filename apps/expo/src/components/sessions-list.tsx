@@ -22,9 +22,9 @@ export const SessionList = ({ navigate, recordings, isFetching }: SessionListPro
   const theme = useMyTheme()
 
   if (isFetching) {
-    <View className='mt-1 flex-col flex-auto items-center justify-center'>
-      <ActivityIndicator animating={true} color={theme.colors.primary} />
-    </View>
+    return (< View className='mt-1 flex-col flex-auto items-center justify-center' >
+      <ActivityIndicator size={30} animating={true} color={theme.colors.primary} />
+    </View >)
   }
 
   if (recordings === undefined || recordings.length === 0) {
