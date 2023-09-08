@@ -11,7 +11,7 @@ const defineConfig = (): ExpoConfig => ({
   name: "AI Gear",
   slug: "ai-gear",
   jsEngine: "hermes",
-  version: "1.5.2",
+  version: "1.5.3",
   orientation: "portrait",
   icon: "./assets/icon.png",
   userInterfaceStyle: "light",
