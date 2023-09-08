@@ -59,6 +59,9 @@ const defineConfig = (): ExpoConfig => ({
       },
     ],
   ],
+  runtimeVersion: {
+    policy: "appVersion",
+  },
 });
 
 export default defineConfig;
