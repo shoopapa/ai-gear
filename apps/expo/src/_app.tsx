@@ -46,13 +46,14 @@ export const App = () => {
           <SignedIn>
             <TRPCProvider>
               <SafeAreaProvider>
-                <RootScreen />
                 <StatusBar />
+                <RootScreen />
               </SafeAreaProvider>
             </TRPCProvider>
           </SignedIn>
           <SignedOut>
             <AuthRoot />
+            <StatusBar />
           </SignedOut>
         </ClerkProvider>
       </PaperProvider>
