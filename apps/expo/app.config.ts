@@ -16,8 +16,8 @@ const defineConfig = (): ExpoConfig => ({
   icon: "./assets/icon.png",
   userInterfaceStyle: "light",
   splash: {
-    image: "./assets/icon.png",
-    resizeMode: "contain",
+    image: "./assets/splash.png",
+    resizeMode: "cover",
   },
   updates: {
     url: "https://u.expo.dev/bf8e06ea-b001-46f1-afe2-779b7007b9d0",

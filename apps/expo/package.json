@@ -10,7 +10,8 @@
     "dev": "expo start --dev-client",
     "lint": "eslint . --ext ts,tsx",
     "ios": "expo run:ios --device",
-    "build:ios": "eas build --platform ios --profile production"
+    "build:ios": "eas build --platform ios --profile production",
+    "start": "expo start --dev-client"
   },
   "dependencies": {
     "@acme/api": "*",
