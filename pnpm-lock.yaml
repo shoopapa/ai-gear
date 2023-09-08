@@ -48,6 +48,7 @@ importers:
       expo-auth-session: ~3.8.0
       expo-build-properties: ~0.4.1
       expo-constants: ~14.0.2
+      expo-font: 11.0.1
       expo-linking: ~3.3.1
       expo-modules-autolinking: ~1.0.0
       expo-random: ~13.0.0
@@ -55,7 +56,7 @@ importers:
       expo-splash-screen: ~0.17.5
       expo-status-bar: ~1.4.2
       expo-updates: ~0.15.6
-      expo-web-browser: ^12.3.2
+      expo-web-browser: 12.0.0
       javascript-time-ago: ^2.5.9
       nativewind: ^2.0.11
       postcss: ^8.4.19
@@ -90,6 +91,7 @@ importers:
       expo-auth-session: 3.8.0_5rqbjkpskv7z7ecvmqgk7mqxsi
       expo-build-properties: 0.4.1_expo@47.0.14
       expo-constants: 14.0.2_expo@47.0.14
+      expo-font: 11.0.1_expo@47.0.14
       expo-linking: 3.3.1_expo@47.0.14
       expo-modules-autolinking: 1.0.2
       expo-random: 13.0.0_expo@47.0.14
@@ -97,7 +99,7 @@ importers:
       expo-splash-screen: 0.17.5_bzqlojoelxfmiwethlgmw5aw3q
       expo-status-bar: 1.4.4
       expo-updates: 0.15.6_expo@47.0.14
-      expo-web-browser: 12.3.2_expo@47.0.14
+      expo-web-browser: 12.0.0_expo@47.0.14
       javascript-time-ago: 2.5.9
       nativewind: 2.0.11_f3xea42f6zrwqyr5c6mbkdauxa
       react: 18.1.0
@@ -7532,16 +7534,6 @@ packages:
       expo: 47.0.14_@babel+core@7.20.5
     dev: false
 
-  /expo-web-browser/12.3.2_expo@47.0.14:
-    resolution: {integrity: sha512-ohBf+vnRnGzlTleY8EQ2XQU0vRdRwqMJtKkzM9MZRPDOK5QyJYPJjpk6ixGhxdeoUG2Ogj0InvhhgX9NUn4jkg==}
-    peerDependencies:
-      expo: '*'
-    dependencies:
-      compare-urls: 2.0.0
-      expo: 47.0.14_@babel+core@7.20.5
-      url: 0.11.1
-    dev: false
-
   /expo/47.0.14_@babel+core@7.20.5:
     resolution: {integrity: sha512-WA6BbLI00R9TweBHRVm+kAFoYqkYOK4oMizNV2CmpxEJaRm8J4R9KI2+WnfkYVPiW6dzDTUR4bG6yAwgzSowEA==}
     hasBin: true
@@ -10879,10 +10871,6 @@ packages:
       once: 1.4.0
     dev: false
 
-  /punycode/1.4.1:
-    resolution: {integrity: sha512-jmYNElW7yvO7TV33CjSmvSiE2yco3bV2czu/OzDKdMNVZQWfxCblURLhf+47syQRBntjfLdd/H0egrzIG+oaFQ==}
-    dev: false
-
   /punycode/2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
@@ -12929,13 +12917,6 @@ packages:
     dependencies:
       querystringify: 2.2.0
       requires-port: 1.0.0
-    dev: false
-
-  /url/0.11.1:
-    resolution: {integrity: sha512-rWS3H04/+mzzJkv0eZ7vEDGiQbgquI1fGfOad6zKvgYQi1SzMmhl7c/DdRGxhaWrVH6z0qWITo8rpnxK/RfEhA==}
-    dependencies:
-      punycode: 1.4.1
-      qs: 6.11.1
     dev: false
 
   /use-latest-callback/0.1.5:
