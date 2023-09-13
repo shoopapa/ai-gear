@@ -98,7 +98,7 @@ export const SessionPage = ({ route, navigation }: RecordProps) => {
         />
         <View className='p-2'></View>
         <InfoCard
-          textLeft={`Peak Z Acceration:`}
+          textLeft={`Peak Z Acceration`}
           textRight={getHighestOfArray(sessionQuery.data.accelerationZ ?? []) + 'g'}
         />
         <View className='p-2'></View>

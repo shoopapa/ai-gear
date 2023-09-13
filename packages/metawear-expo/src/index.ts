@@ -9,8 +9,8 @@ import {
 import MetawearExpoModule from "./MetawearExpoModule";
 
 // connections
-export const connnect = (): void => {
-  return MetawearExpoModule.connect();
+export const connnect = (timeout: number): void => {
+  return MetawearExpoModule.connect(timeout);
 };
 export const connectToRemembered = (): void => {
   return MetawearExpoModule.connectToRemembered();

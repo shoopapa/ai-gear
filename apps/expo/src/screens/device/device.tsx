@@ -42,7 +42,7 @@ const Connect = () => {
         style={{ backgroundColor: theme.colors.success, margin: '2%' }}
         icon="bluetooth"
         textColor='white'
-        onPress={connnect}
+        onPress={() => connnect(8)}
       >
         Connect
       </Button>
