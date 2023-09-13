@@ -4,14 +4,13 @@ import { Button } from "react-native-paper";
 import { warmUpAsync, coolDownAsync } from 'expo-web-browser';
 import * as AuthSession from "expo-auth-session";
 
-export const SignInWithGoogleButton = () => {
+export const SignInWithAppleButton = () => {
   const { isLoaded, signIn, setSession } = useSignIn();
   const { signUp } = useSignUp();
   if (!isLoaded) return null;
 
 
-
-  const handleSignInWithGooglePress = async () => {
+  const handleSignInWithApplePress = async () => {
     try {
       const redirectUrl = AuthSession.makeRedirectUri({
         path: "/oauth-native-callback",
@@ -19,7 +18,7 @@ export const SignInWithGoogleButton = () => {
       });
       // Choose your OAuth provider, based upon your instance.
       await signIn.create({
-        strategy: "oauth_google",
+        strategy: "oauth_apple",
         redirectUrl,
       });
 
@@ -80,10 +79,10 @@ export const SignInWithGoogleButton = () => {
   return (
     <Button
       textColor='white'
-      buttonColor='#DB4437' // google red
+      buttonColor='#0d0d0d' // Apple black
       className="m-3"
       mode='contained'
-      onPress={handleSignInWithGooglePress}
-    > Sign in with Google</Button >
+      onPress={handleSignInWithApplePress}
+    > Sign in with apple</Button >
   );
 };
