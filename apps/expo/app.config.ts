@@ -29,7 +29,7 @@ const defineConfig = (): ExpoConfig => ({
     bundleIdentifier: "com.app.ai-gear",
     infoPlist: {
       NSBluetoothAlwaysUsageDescription:
-        "AI Gear streams kinamatic data through bluetooth to give you preformace metrics",
+        "AI Gear streams kinematic data through bluetooth to give you preformace metrics",
     },
   },
 
