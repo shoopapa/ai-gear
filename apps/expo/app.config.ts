@@ -7,7 +7,7 @@ const CLERK_PUBLISHABLE_KEY =
   "pk_test_ZXhwZXJ0LWFsaWVuLTkxLmNsZXJrLmFjY291bnRzLmRldiQ";
 
 const defineConfig = (): ExpoConfig => ({
-  scheme: "com.jdavis.ai-gear",
+  scheme: "com.app.ai-gear",
   name: "AI Gear",
   slug: "ai-gear",
   jsEngine: "hermes",
@@ -26,16 +26,16 @@ const defineConfig = (): ExpoConfig => ({
   assetBundlePatterns: ["**/*"],
   ios: {
     supportsTablet: true,
-    bundleIdentifier: "com.jdavis.ai-gear",
+    bundleIdentifier: "com.app.ai-gear",
     infoPlist: {
-      NSBluetoothAlwaysUsageDescription: "Allow AI Gear to use bluetooth?",
+      NSBluetoothAlwaysUsageDescription:
+        "AI Gear streams kinamatic data through bluetooth to give you preformace metrics",
     },
   },
 
-  currentFullName: "@joedavis29@ai-gear",
-  originalFullName: "@joedavis29@ai-gear",
+  currentFullName: "AI Gear",
   android: {
-    package: "com.jdavis.aigear",
+    package: "com.app.aigear",
     adaptiveIcon: {
       foregroundImage: "./assets/icon.png",
       backgroundColor: "#2e026d",
