@@ -89,7 +89,7 @@ public class MetawearExpoModule: Module {
       }
     }
 
-    Function("connect") {
+    Function("connect") { (timeout: Int) -> Void in
       self.state.scanning = true
       self.setState(state: self.state)
 
@@ -102,7 +102,8 @@ public class MetawearExpoModule: Module {
           }
       }
 
-      DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 7, execute: c )
+
+      DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.seconds(timeout), execute: c )
 
       MetaWearScanner.shared.startScan(allowDuplicates: true) { (device) in
         print("we found a device!")

@@ -7,23 +7,9 @@ import { useMyTheme, styles } from '../../perfereneces';
 import { battery, blink, connnect, forget } from '@acme/metawear-expo'
 import DeviceContext from '../../device/device-context';
 import { InfoCard } from '../../components/info-card';
+import { trpc } from '../../utils/trpc';
+import { ConfirmationModal } from '../../components/confirmation-modal';
 
-const SignOut = () => {
-  const theme = useMyTheme()
-  const { signOut } = useAuth();
-  return (
-    <View >
-      <Button
-        mode="contained"
-        style={{ backgroundColor: theme.colors.error, margin: '2%' }}
-        onPress={() => signOut()}
-        textColor='white'
-      >
-        Sign Out
-      </Button>
-    </View>
-  );
-};
 
 const Connect = () => {
   const theme = useMyTheme()
@@ -42,7 +28,7 @@ const Connect = () => {
         style={{ backgroundColor: theme.colors.success, margin: '2%' }}
         icon="bluetooth"
         textColor='white'
-        onPress={connnect}
+        onPress={() => connnect(8)}
       >
         Connect
       </Button>
@@ -82,7 +68,11 @@ const Connect = () => {
 
 export const Device = () => {
   const theme = useMyTheme()
+  const { signOut } = useAuth();
   const { mac, connected } = useContext(DeviceContext)
+
+  const { mutate } = trpc.user.deleteUser.useMutation();
+  const [modalVisible, setmodalVisible] = useState(false)
 
   const [bat, setBat] = useState("")
   useEffect(() => {
@@ -109,9 +99,34 @@ export const Device = () => {
       </View>
       <View className='w-full'>
         <Text className='m-5 color-black border-1 border-gray-300 text-l'>User</Text>
-        <SignOut />
-
+        <Button
+          mode="contained"
+          style={{ backgroundColor: theme.colors.primary, margin: '2%' }}
+          onPress={() => signOut()}
+          textColor='white'
+        >
+          Sign Out
+        </Button>
+        <Button
+          mode="contained"
+          style={{ backgroundColor: theme.colors.error, margin: '2%' }}
+          onPress={() => setmodalVisible(true)}
+          textColor='white'
+        >
+          Delete Account
+        </Button>
       </View>
+
+      <ConfirmationModal
+        cancel={() => setmodalVisible(false)}
+        confirm={async () => {
+          setmodalVisible(false)
+          mutate()
+          signOut()
+        }}
+        visible={modalVisible}
+        message="Are you sure you want to delete your account? All sessions will be lost forever"
+      />
     </View>
   );
 }
