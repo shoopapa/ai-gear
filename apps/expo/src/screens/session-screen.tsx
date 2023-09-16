@@ -55,7 +55,7 @@ export const SessionPage = ({ route, navigation }: RecordProps) => {
   }
 
   return (
-    <View className='' style={{ ...styles(theme).container, alignItems: 'flex-start' }}>
+    <View className='flex-1 text-black justify-start items-start' >
       <View className='h-56'>
         <SessionChart
           data={[
