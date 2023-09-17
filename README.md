@@ -2,7 +2,7 @@
 
 # AI Gear
 
-Elevate your wrestling game with AI Gear, the app that delivers real-time performance insights using sensor tech on and your mobile device
+Elevate your wrestling game with AI Gear, the app that delivers real-time performance insights using sensor tech on your mobile device
 
 ## Description
 
