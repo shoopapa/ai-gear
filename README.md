@@ -18,8 +18,7 @@ Real-Time Metrics: AI Gear streams a wealth of data to your iOS device, includin
 
 Takedown Speed: Measure how quickly you execute takedowns.
 Escape Velocity: Analyze your ability to break free from opponents.
-Intensity and Stamina: Monitor your heart rate and energy expenditure during matches.
-Precision Strikes: Assess your accuracy and effectiveness in landing strategic strikes.
+Intensity and Stamina: Monitor your energy expenditure during matches.
 
 Performance Trends: AI Gear doesn't just provide real-time data – it also compiles your performance history, helping you identify strengths, weaknesses, and areas for improvement over time.
 
