@@ -1,68 +1,50 @@
 [![CI](https://github.com/perkinsjr/t3-turbo-and-clerk/actions/workflows/ci.yml/badge.svg)](https://github.com/perkinsjr/t3-turbo-and-clerk/actions/workflows/ci.yml)
 
-# Create T3 Turbo with Clerk Authentication
+# AI Gear
 
-## Clerk Dashboard Setup
+Elevate your wrestling game with AI Gear, the app that delivers real-time performance insights using sensor tech on and your mobile device
 
-For this template to work you need to enable Discord as an OAuth provider. You can find the social options under `User & Authentication / Social Providers` in the [Clerk Dashboard](https://dashboard.clerk.dev)
+## Description
 
-> If you change any setting here outside of adding Discord, you may need to update your Expo code to handle any requirements you change.
+Elevate your wrestling game to new heights with AI Gear, the revolutionary app that brings advanced performance tracking right to your fingertips! Designed exclusively for wrestlers, AI Gear combines cutting-edge sensor technology with the power of your iOS device to provide you with real-time insights and analysis of your performance on the mat.
 
-It uses [Turborepo](https://turborepo.org/) and contains:
+Key features:
 
-## Code Layout
+Wearable Sensor Integration: Attach our state-of-the-art sensor to your wrestling headgear for instant performance monitoring. The sensor is lightweight and unobtrusive, allowing you to focus on your match without distraction.
 
-```
-.github
-  └─ workflows
-        └─ CI with pnpm cache setup
-.vscode
-  └─ Recommended extensions and settings for VSCode users
-apps
-  ├─ expo
-  └─ next.js
-      ├─ Next.js 13
-      ├─ React 18
-      └─ E2E Typesafe API Server & Client
-packages
- ├─ api
- |   └─ tRPC v10 router definition
- └─ db
- |   └─ typesafe db-calls using Prisma
- └─ metawear-expo
-     └─ ios/android native code for metawear
-```
+Features coming soon:
 
-## Quick Start
+Real-Time Metrics: AI Gear streams a wealth of data to your iOS device, including:
 
-To get it running, follow the steps below:
+Takedown Speed: Measure how quickly you execute takedowns.
+Escape Velocity: Analyze your ability to break free from opponents.
+Intensity and Stamina: Monitor your heart rate and energy expenditure during matches.
+Precision Strikes: Assess your accuracy and effectiveness in landing strategic strikes.
+
+Performance Trends: AI Gear doesn't just provide real-time data – it also compiles your performance history, helping you identify strengths, weaknesses, and areas for improvement over time.
+
+Match Analysis: Review match-specific data and video recordings to gain deeper insights into your techniques and strategies. Plus, now you can compare your practice performance to matches, allowing you to fine-tune your skills and strategies for optimal results.
+
+Compete and Share: Challenge friends and teammates to friendly competitions or share your achievements on social media to inspire and motivate others.
+
+AI Gear is your all-in-one training partner, offering a competitive edge that was once only available to elite athletes. Whether you're an aspiring wrestler or a seasoned pro, take control of your training, refine your technique, and reach your full potential with AI Gear.
+
+Get ready to dominate the mat like never before. Download AI Gear today and step up your wrestling game!
+
+## keywords
+
+wrestling, training, sensor, tech, AI
+
+https://ai-gear.com
 
 ### Setup dependencies
 
-```diff
+```
 # Install dependencies
 pnpm i
 
-# In packages/db/prisma update schema.prisma provider to use sqlite
-# or use your own database provider
-- provider = "postgresql"
-+ provider = "sqlite"
-
-# Configure environment variables.
-# There is an `.env.example` in the root directory you can use for reference
-cp .env.example .env
-
 # Push the Prisma schema to your database
 pnpm db-push
-```
-
-### Configure Expo app
-
-Expo doesn't use the .env for the publishable key, so you will need to go to `apps/expo/app.config.ts` and add it there.
-
-```
-const CLERK_PUBLISHABLE_KEY = "your-clerk-publishable-key";
-
 ```
 
 ### Configure Expo `dev`-script
