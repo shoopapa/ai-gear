@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+psycopg = "*"
+python-dotenv = "1.0.0"
+ipykernel = "*"
+numpy = "*"
+pandas = "*"
+tensorflow = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
+
+[scripts]
+app = "python app.py"
