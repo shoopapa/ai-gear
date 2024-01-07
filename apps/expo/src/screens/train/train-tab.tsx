@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TrainPage } from './train-page';
 import { styles, useMyTheme } from '../../perfereneces';
 import { MovesPage } from './moves-page';
-import { SessionPage } from '../session-screen';
+import { SessionPage } from '../session-screen/session-screen';
 
 
 export type TrainParamsList = {

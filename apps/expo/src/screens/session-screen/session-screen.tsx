@@ -2,12 +2,13 @@ import React from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ActivityIndicator, Button, Text } from 'react-native-paper';
 import { View } from 'react-native';
-import { timeAgo } from '../utils/time-ago';
-import { SessionChart } from '../components/session-chart';
-import { styles, useMyTheme } from '../perfereneces';
-import { RecordParamList } from './record/record-tab';
-import { trpc } from '../utils/trpc';
-import { EditableInfoCard, InfoCard } from '../components/info-card';
+import { timeAgo } from '../../utils/time-ago';
+import { SessionChart } from '../../components/session-chart';
+import { useMyTheme } from '../../perfereneces';
+import { RecordParamList } from '../record/record-tab';
+import { trpc } from '../../utils/trpc';
+import { EditableInfoCard, InfoCard } from '../../components/info-card';
+import { MlTestComponenet } from './ml';
 
 
 const getHighestOfArray = (arr: number[]): number => {
@@ -56,6 +57,7 @@ export const SessionPage = ({ route, navigation }: RecordProps) => {
 
   return (
     <View className='flex-1 text-black justify-start items-start' >
+      <MlTestComponenet />
       <View className='h-56'>
         <SessionChart
           data={[
@@ -107,9 +109,7 @@ export const SessionPage = ({ route, navigation }: RecordProps) => {
           mode="contained"
           textColor='white'
           icon='delete'
-          onPress={async () => {
-            deleteSession({ id })
-          }}
+          onPress={() => deleteSession({ id })}
         >
           Delete
         </Button>

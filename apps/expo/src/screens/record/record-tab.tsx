@@ -2,7 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Record } from './record';
 import { styles, useMyTheme } from '../../perfereneces';
-import { SessionPage } from '../session-screen';
+import { SessionPage } from '../session-screen/session-screen';
 
 
 export type RecordParamList = {
