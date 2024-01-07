@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@acme/api": "*",
+    "@acme/ml": "*",
     "@acme/metawear-expo": "*",
     "@acme/tailwind-config": "*",
     "@clerk/clerk-expo": "0.11.3",

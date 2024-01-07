@@ -26,6 +26,7 @@ importers:
     specifiers:
       '@acme/api': '*'
       '@acme/metawear-expo': '*'
+      '@acme/ml': '*'
       '@acme/tailwind-config': '*'
       '@babel/core': ^7.19.3
       '@babel/preset-env': ^7.19.3
@@ -82,6 +83,7 @@ importers:
     dependencies:
       '@acme/api': link:../../packages/api
       '@acme/metawear-expo': link:../../packages/metawear-expo
+      '@acme/ml': link:../../packages/ml
       '@acme/tailwind-config': link:../../packages/config/tailwind
       '@clerk/clerk-expo': 0.11.3_xkg5elew5es2gyjfasazkug3tu
       '@expo/config-plugins': 5.0.2
@@ -281,6 +283,9 @@ importers:
       '@types/react': 18.0.26
       '@types/react-native': 0.70.8
       expo-modules-core: 1.2.5
+
+  packages/ml:
+    specifiers: {}
 
 packages:
 

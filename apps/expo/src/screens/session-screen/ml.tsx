@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { View, Text } from 'react-native'
 import * as tf from '@tensorflow/tfjs';
+import { bundleResourceIO } from '@tensorflow/tfjs-react-native'
 import '@tensorflow/tfjs-react-native';
+import { modelDef, weights } from '@acme/ml'
 
 export const MlTestComponenet: React.FC = () => {
 
@@ -10,6 +12,9 @@ export const MlTestComponenet: React.FC = () => {
   useEffect(() => {
     const handleMountTF = async () => {
       await tf.ready();
+      const model = await tf.loadLayersModel(
+        bundleResourceIO(modelDef, weights)
+      )
       setReady(true);
     };
 
